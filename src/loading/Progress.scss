@@ -1,0 +1,6 @@
+@import '~material-design-lite/src/progress/progress';
+
+.mdl-progress:not(.mdl-progress__indeterminate):not(.mdl-progress__indeterminate) > .auxbar {
+  mask: url("./images/buffer.svg?embed");
+}
+

@@ -1,0 +1,7 @@
+@import '~material-design-lite/src/button/button';
+
+.mdl-button {
+  & > * {
+    vertical-align: middle;
+  }
+}

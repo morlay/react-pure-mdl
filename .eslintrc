@@ -1,0 +1,31 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "env": {
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "no-console": 0,
+    "eol-last": 0,
+    "comma-dangle": [
+      2,
+      "never"
+    ],
+    "jsx-quotes": [
+      2,
+      "prefer-single"
+    ],
+    "react/prop-types": [
+      2,
+      {
+        "ignore": [
+          "children"
+        ]
+      }
+    ],
+    "react/no-did-mount-set-state": 0,
+    "react/no-multi-comp": 0
+  }
+}

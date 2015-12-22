@@ -1,0 +1,8 @@
+@import '~codemirror/lib/codemirror.css';
+@import '~codemirror/theme/solarized.css';
+@import '~normalize.css/normalize.css';
+
+#root {
+  min-width: 320px;
+  overflow: auto;
+}

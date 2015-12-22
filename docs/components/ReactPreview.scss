@@ -1,0 +1,10 @@
+.ReactPreview {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: auto;
+
+  iframe {
+    border: none;
+  }
+}

@@ -1,0 +1,13 @@
+.ReactDocMenu.mdl-layout__drawer {
+  text-transform: capitalize;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  & > .mdl-navigation {
+    padding-top: 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+}

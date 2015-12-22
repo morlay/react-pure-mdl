@@ -1,0 +1,8 @@
+@import '~material-design-lite/src/checkbox/checkbox';
+
+.mdl-checkbox__tick-outline {
+  mask: url('./images/tick-mask.svg?embed') !important;
+  .mdl-checkbox.is-checked & {
+    background-image: url('./images/tick.svg?embed') !important;
+  }
+}
