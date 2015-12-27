@@ -27,9 +27,9 @@ export default (conf) => {
     },
 
     output: {
-      path: path.join(process.cwd(), conf.build, '/__built__'),
+      path: path.join(process.cwd(), conf.build, '/assets'),
       chunkFilename: 'chunk.[chunkhash].js',
-      publicPath: '/__built__/',
+      publicPath: './',
       filename: '[name].js'
     },
 

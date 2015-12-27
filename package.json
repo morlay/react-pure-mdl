@@ -13,7 +13,7 @@
     "test": "gulp lint && gulp test --coverage",
     "build": "rm -rf lib && babel src/ --ignore __*__ --out-dir lib/",
     "build:docs": "NODE_ENV=production gulp build:prod",
-    "release": "npm run build:docs && gulp ghPages",
+    "release:docs": "npm run build:docs && gulp ghPages",
     "prestart": "npm prune && npm install -d",
     "start": "gulp dev"
   },

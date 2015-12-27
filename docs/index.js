@@ -17,15 +17,15 @@ import {
   IndexRoute
 } from 'react-router';
 
-const siteUrlBase = window.location.origin + window.location.pathname;
+const siteUrlBase = window.location.origin + (window.location.pathname).replace('index.html', '');
 
 const previewConfig = {
   styles: [
-    `${siteUrlBase}__built__/components.css`
+    `${siteUrlBase}assets/components.css`
   ],
   scripts: [
-    `${siteUrlBase}__built__/vendor.js`,
-    `${siteUrlBase}__built__/components.js`
+    `${siteUrlBase}assets/vendor.js`,
+    `${siteUrlBase}assets/components.js`
   ]
 };
 
