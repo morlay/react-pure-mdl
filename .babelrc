@@ -7,5 +7,19 @@
     "babel-plugin-transform-class-properties",
     "transform-object-rest-spread",
     "transform-runtime"
-  ]
+  ],
+  "env": {
+    "node": {
+      "plugins": [
+        [
+          "babel-plugin-transform-require-ignore",
+          {
+            "extensions": [
+              ".scss"
+            ]
+          }
+        ]
+      ]
+    }
+  }
 }

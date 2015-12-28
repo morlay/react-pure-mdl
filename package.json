@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "test": "gulp lint && gulp test --coverage",
-    "build": "rm -rf lib && gulp copy --lib && babel src/ --ignore __*__ --out-dir lib/",
+    "build": "rm -rf lib && BABEL_ENV=node babel src/ --ignore __*__ --out-dir lib/",
     "build:docs": "NODE_ENV=production gulp build:prod",
     "release": "npm run build && npm publish",
     "release:docs": "npm run build:docs && gulp ghPages",
@@ -56,6 +56,8 @@
     "json-loader": "^0.5.4",
     "legit-tests": "^0.6.3",
     "map-stream": "0.0.6",
+    "material-design-icons": "^2.1.1",
+    "material-design-lite": "^1.0.6",
     "mocha": "^2.3.4",
     "node-sass": "^3.4.2",
     "normalize.css": "^3.0.3",
@@ -80,13 +82,8 @@
     "classnames": "^2.2.1",
     "dom-helpers": "^2.4.0",
     "global": "^4.3.0",
-    "material-design-icons": "^2.1.1",
-    "material-design-lite": "^1.0.6",
     "react": "^0.14.3",
     "react-dom": "^0.14.3"
-  },
-  "directories": {
-    "doc": "docs"
   },
   "repository": {
     "type": "git",
