@@ -131,13 +131,13 @@ class Textfield extends React.Component {
     const inputTag = hasRows || maxRows > 1 ? 'textarea' : 'input';
 
     const inputProps = {
+      ...otherProps,
       className: classNames(TextfieldCssClasses.INPUT, inputClassName),
       id: inputId,
       key: inputId,
       rows,
       value,
       ref: 'input',
-      ...otherProps,
       onChange: (e) => this.handleChange(e),
       onFocus: (e) => this.handleFocus(e),
       onBlur: (e) => this.handleBlur(e)
