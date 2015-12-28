@@ -5,10 +5,6 @@ import classNames from 'classnames';
 import Tab from './Tab';
 import TabBar from './TabBar';
 
-import { MaterialTabs } from 'material-design-lite-cjs/src/tabs';
-
-import connectMDL from '../utils/connectMDL';
-
 import TabsCssClasses from './constants/TabsCssClasses';
 
 const TabPropType = (props, propName, componentName) => {
@@ -18,12 +14,15 @@ const TabPropType = (props, propName, componentName) => {
   }
 };
 
+/**
+ * @exampleFile ./__examples__/Tabs.js
+ */
 class Tabs extends React.Component {
   static propTypes = {
     activeTab: PropTypes.number,
     children: PropTypes.oneOfType([
       TabPropType,
-      PropTypes.arrayOf(TabBar)
+      PropTypes.arrayOf(TabPropType)
     ]),
     className: PropTypes.string,
     tabBarProps: PropTypes.object,
@@ -33,7 +32,9 @@ class Tabs extends React.Component {
   render() {
     const { tabBarProps, activeTab, className, onChange, children, ...otherProps } = this.props;
 
-    const classes = classNames(TabsCssClasses.ROOT, className);
+    const classes = classNames(TabsCssClasses.ROOT, className, {
+      [TabsCssClasses.IS_UPGRADED]: true
+    });
 
     return (
       <div className={classes} {...otherProps}>
@@ -50,10 +51,14 @@ class Tabs extends React.Component {
   }
 }
 
-export default connectMDL(MaterialTabs)(Tabs);
-
 export {
-  Tabs,
   TabBar,
   Tab
 };
+
+Object.assign(Tabs, {
+  TabBar,
+  Tab
+});
+
+export default Tabs;
