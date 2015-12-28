@@ -28,6 +28,7 @@ export default {
 
   CONTENT: 'mdl-layout__content',
 
+  TAB_BAR_CONTAINER: 'mdl-layout__tab-bar-container',
   TAB_BAR: 'mdl-layout__tab-bar',
 
   HAS_DRAWER: 'has-drawer',

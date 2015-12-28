@@ -19,10 +19,12 @@ import LayoutCssClasses from './constants/LayoutCssClasses';
 const Constants = {
   MAX_WIDTH: '(max-width: 1024px)'
 };
+
 /**
  * @exampleFile ./__examples__/LayoutWaterfallHeader.js
  * @exampleFile ./__examples__/LayoutTransparentHeader.js
  * @exampleFile ./__examples__/LayoutFixed.js
+ * @exampleFile ./__examples__/LayoutFixedTabs.js
  */
 class Layout extends React.Component {
   static propTypes = {

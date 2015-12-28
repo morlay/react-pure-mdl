@@ -8,13 +8,15 @@ const HeaderTabs = props => {
   const { className, children, ...otherProps } = props;
 
   return (
-    <TabBar
-      cssPrefix={LayoutCssClasses.ROOT}
-      className={className}
-      {...otherProps}
-    >
-      {children}
-    </TabBar>
+    <div className={LayoutCssClasses.TAB_BAR_CONTAINER}>
+      <TabBar
+        cssPrefix={LayoutCssClasses.ROOT}
+        className={className}
+        {...otherProps}
+      >
+        {children}
+      </TabBar>
+    </div>
   );
 };
 
