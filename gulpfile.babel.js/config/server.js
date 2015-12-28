@@ -29,7 +29,7 @@ export default (conf) => {
     middleware = [
       ...middleware,
       webpackDevMiddleware(bundler, {
-        publicPath: webpackConfig.output.publicPath,
+        publicPath: '/assets/',
         stats: webpackConfig.stats
       }),
       webpackHotMiddleware(bundler)
