@@ -5,6 +5,7 @@ import ConfigRegistry from 'undertaker-config-registry';
 const baseConfig = {
   docs: './docs',
   src: './src',
+  lib: './lib',
   helpers: './helpers',
   build: './public'
 };
