@@ -44,4 +44,11 @@ class Tab extends React.Component {
   }
 }
 
+Tab.PropType = (props, propName, componentName) => {
+  const prop = props[propName];
+  if (prop.type !== Tab) {
+    return new Error('`' + componentName + '` only accepts `Tab` as children.');
+  }
+};
+
 export default Tab;

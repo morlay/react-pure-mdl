@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import LayoutCssClasses from './constants/LayoutCssClasses';
+import * as LayoutCssClasses from './constants/LayoutCssClasses';
 
 const LayoutObfuscator = (props) => {
   return (

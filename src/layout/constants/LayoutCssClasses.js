@@ -1,47 +1,51 @@
-export default {
-  ROOT: 'mdl-layout',
+export const ROOT = 'mdl-layout';
 
-  FIXED_HEADER: 'mdl-layout--fixed-header',
-  FIXED_DRAWER: 'mdl-layout--fixed-drawer',
-  FIXED_TABS: 'mdl-layout--fixed-tabs',
+export const ROOT__FIXED_HEADER = `${ROOT}--fixed-header`;
+export const ROOT__FIXED_DRAWER = `${ROOT}--fixed-drawer`;
+export const ROOT__FIXED_TABS = `${ROOT}--fixed-tabs`;
+export const ROOT__IS_SMALL_SCREEN = 'is-small-screen';
 
-  SPACER: 'mdl-layout-spacer',
-  TITLE: 'mdl-layout__title',
+export const ROOT__HAS_DRAWER = 'has-drawer';
+export const ROOT__HAS_TABS = 'has-tabs';
+export const ROOT__HAS_SCROLLING_HEADER = 'has-scrolling-header';
 
-  NAVIGATION: 'mdl-navigation',
-  NAVIGATION_LINK: 'mdl-navigation__link',
-  NAVIGATION_LINK_CURRENT: 'mdl-navigation__link--current',
+export const TITLE = `${ROOT}__title`;
 
-  HEADER: 'mdl-layout__header',
-  HEADER_ROW: 'mdl-layout__header-row',
+export const HEADER = `${ROOT}__header`;
 
-  HEADER_SEAMED: 'mdl-layout__header--seamed',
-  HEADER_WATERFALL: 'mdl-layout__header--waterfall',
-  HEADER_SCROLL: 'mdl-layout__header--scroll',
-  HEADER_TRANSPARENT: 'mdl-layout__header--transparent',
+export const HEADER__SEAMED = `${HEADER}--seamed`;
+export const HEADER__WATERFALL = `${HEADER}--waterfall`;
+export const HEADER__SCROLL = `${HEADER}--scroll`;
 
-  DRAWER: 'mdl-layout__drawer',
-  DRAWER_BTN: 'mdl-layout__drawer-button',
+export const HEADER__TRANSPARENT = `${HEADER}--transparent`;
 
-  CONTAINER: 'mdl-layout__container',
-  OBFUSCATOR: 'mdl-layout__obfuscator',
+export const CASTING_SHADOW = 'is-casting-shadow';
 
-  CONTENT: 'mdl-layout__content',
+export const HEADER_ROW = `${ROOT}__header-row`;
 
-  TAB_BAR_CONTAINER: 'mdl-layout__tab-bar-container',
-  TAB_BAR: 'mdl-layout__tab-bar',
+export const DRAWER = `${ROOT}__drawer`;
 
-  HAS_DRAWER: 'has-drawer',
-  HAS_TABS: 'has-tabs',
-  HAS_SCROLLING_HEADER: 'has-scrolling-header',
-  IS_COMPACT: 'is-compact',
-  IS_SMALL_SCREEN: 'is-small-screen',
-  IS_DRAWER_OPEN: 'is-visible',
-  CASTING_SHADOW: 'is-casting-shadow',
-  IS_ACTIVE: 'is-active',
-  IS_UPGRADED: 'is-upgraded',
-  IS_ANIMATING: 'is-animating',
+export const DRAWER_BTN = `${ROOT}__drawer-button`;
+export const CONTAINER = `${ROOT}__container`;
+export const OBFUSCATOR = `${ROOT}__obfuscator`;
+export const CONTENT = `${ROOT}__content`;
 
-  ON_LARGE_SCREEN: 'mdl-layout--large-screen-only',
-  ON_SMALL_SCREEN: 'mdl-layout--small-screen-only'
-};
+export const TAB_BAR_CONTAINER = `${ROOT}__tab-bar-container`;
+export const TAB_BAR = `${ROOT}__tab-bar`;
+
+export const TAB_BAR_BUTTON = `${ROOT}__tab-bar-button`;
+export const TAB_BAR_LEFT_BUTTON = `${ROOT}__tab-bar-left-button`;
+export const TAB_BAR_RIGHT_BUTTON = `${ROOT}__tab-bar-right-button`;
+
+export const IS_COMPACT = 'is-compact';
+export const IS_DRAWER_OPEN = 'is-visible';
+
+export const IS_ACTIVE = 'is-active';
+export const IS_UPGRADED = 'is-upgraded';
+export const IS_ANIMATING = 'is-animating';
+
+export const SPACER = `mdl-layout-spacer`;
+
+export const NAVIGATION = 'mdl-navigation';
+export const NAVIGATION_LINK = `${NAVIGATION}__link`;
+export const NAVIGATION_LINK_CURRENT = `${NAVIGATION}__link--current`;

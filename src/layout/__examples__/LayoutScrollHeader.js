@@ -2,24 +2,16 @@ import React from 'react';
 
 import Layout, { LayoutHeader, LayoutNavigation, LayoutHeaderRow, LayoutContent } from '../../layout/Layout';
 
-const LayoutWaterfallHeader = () => {
+const LayoutScrollingHeader = () => {
   return (
     <Layout
-      mode='waterfall'
+      mode='scroll'
       fixedHeader
     >
       <LayoutHeader
         title='Title'
       >
         <LayoutHeaderRow title='Title'/>
-        <LayoutHeaderRow>
-          <LayoutNavigation>
-            <a href=''>Link</a>
-            <a href=''>Link</a>
-            <a href=''>Link</a>
-            <a href=''>Link</a>
-          </LayoutNavigation>
-        </LayoutHeaderRow>
         <LayoutHeaderRow>
           <LayoutNavigation>
             <a href=''>Link</a>
@@ -59,4 +51,4 @@ const LayoutWaterfallHeader = () => {
 };
 
 
-export default LayoutWaterfallHeader;
+export default LayoutScrollingHeader;

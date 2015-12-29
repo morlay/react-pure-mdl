@@ -1,6 +1,7 @@
 import './Layout.scss';
 
 import React, { PropTypes, isValidElement, Children, cloneElement } from 'react';
+import { findDOMNode } from 'react-dom';
 import global from 'global';
 import classNames from 'classnames';
 
@@ -14,7 +15,9 @@ import LayoutNavigation from './LayoutNavigation';
 import LayoutSpacer from './LayoutSpacer';
 import LayoutObfuscator from './LayoutObfuscator';
 
-import LayoutCssClasses from './constants/LayoutCssClasses';
+import Icon from '../icons/Icon';
+
+import * as LayoutCssClasses from './constants/LayoutCssClasses';
 
 const Constants = {
   MAX_WIDTH: '(max-width: 1024px)'
@@ -22,16 +25,30 @@ const Constants = {
 
 /**
  * @exampleFile ./__examples__/LayoutWaterfallHeader.js
+ * @exampleFile ./__examples__/LayoutScrollHeader.js
  * @exampleFile ./__examples__/LayoutTransparentHeader.js
  * @exampleFile ./__examples__/LayoutFixed.js
+ * @exampleFile ./__examples__/LayoutWithTabs.js
  * @exampleFile ./__examples__/LayoutFixedTabs.js
  */
 class Layout extends React.Component {
   static propTypes = {
+    mode: PropTypes.oneOf(['standard', 'seamed', 'waterfall', 'scroll']),
+    drawerBtn: PropTypes.node,
+    drawerOpen: PropTypes.bool,
     className: PropTypes.string,
     fixedDrawer: PropTypes.bool,
     fixedHeader: PropTypes.bool,
     fixedTabs: PropTypes.bool
+  };
+
+  static defaultProps = {
+    mode: 'standard',
+    drawerBtn: (
+      <span>
+        <Icon name='menu'/>
+      </span>
+    )
   };
 
   constructor(props) {
@@ -39,21 +56,39 @@ class Layout extends React.Component {
     this.state = {
       hasDrawer: false,
       isSmallScreen: false,
-      isDrawerOpen: false,
+      isHeaderCompact: false,
+      isDrawerOpen: !!props.drawerOpen,
       isUpgraded: false
     };
     this.Constants = Constants;
   }
 
   componentDidMount() {
-    this.setState({
-      hasDrawer: this._hasDrawer(this.props.children),
-      isUpgraded: true
-    }, () => {
-      this._screenSizeMediaQuery = global.matchMedia((this.Constants.MAX_WIDTH));
-      this._screenSizeMediaQuery.addListener(this._screenSizeHandler.bind(this));
-      this._screenSizeHandler();
+    setTimeout(() => {
+      this.setState({
+        hasDrawer: this._hasDrawer(this.props.children),
+        isUpgraded: true
+      }, () => {
+        this._screenSizeMediaQuery = global.matchMedia((this.Constants.MAX_WIDTH));
+        this._screenSizeMediaQuery.addListener(this._screenSizeHandler.bind(this));
+        this._screenSizeHandler();
+        if (this.props.mode === 'waterfall') {
+          this._toggleHeaderCompact(findDOMNode(this.refs.content));
+        }
+      });
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.drawerOpen !== this.state.isDrawerOpen) {
+      this.setState({
+        isDrawerOpen: nextProps.drawerOpen
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    this._screenSizeMediaQuery = null;
   }
 
   _hasDrawer(children) {
@@ -70,18 +105,25 @@ class Layout extends React.Component {
     } else {
       this.setState({
         isSmallScreen: false
+      }, () => {
+        if (this.state.hasDrawer) {
+          this.setState({
+            isDrawerOpen: false
+          });
+        }
       });
-      if (this.state.hasDrawer) {
-        this.setState({
-          isDrawerOpen: false
-        });
-      }
     }
   }
 
   _toggleDrawer() {
     this.setState({
       isDrawerOpen: !this.state.isDrawerOpen
+    });
+  }
+
+  _toggleHeaderCompact($content) {
+    this.setState({
+      isHeaderCompact: $content.scrollTop > 0
     });
   }
 
@@ -95,9 +137,19 @@ class Layout extends React.Component {
             });
           case LayoutHeader:
             return cloneElement(child, {
-              withDrawerBtn: this.state.hasDrawer,
+              mode: this.props.mode,
+              isCompact: this.state.isHeaderCompact,
+              drawerBtn: this.state.hasDrawer ? this.props.drawerBtn : undefined,
               onDrawerBtnClick: this._toggleDrawer.bind(this)
             });
+          case LayoutContent:
+            if (this.props.mode === 'waterfall') {
+              return cloneElement(child, {
+                ref: 'content',
+                onScroll: (e) => this._toggleHeaderCompact(e.target)
+              });
+            }
+            return child;
           default:
             return child;
         }
@@ -107,20 +159,24 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { className, fixedDrawer, fixedHeader, fixedTabs, ...otherProps } = this.props;
+    const { mode, className, fixedDrawer, fixedHeader, fixedTabs, ...otherProps } = this.props;
     const state = this.state;
 
     const classes = classNames(className, LayoutCssClasses.ROOT, {
-      [LayoutCssClasses.FIXED_HEADER]: fixedHeader,
-      [LayoutCssClasses.FIXED_DRAWER]: fixedDrawer,
-      [LayoutCssClasses.FIXED_TABS]: fixedTabs,
-      [LayoutCssClasses.HAS_DRAWER]: state.hasDrawer,
-      [LayoutCssClasses.IS_SMALL_SCREEN]: state.isSmallScreen,
+      [LayoutCssClasses.ROOT__FIXED_HEADER]: fixedHeader,
+      [LayoutCssClasses.ROOT__FIXED_DRAWER]: fixedDrawer,
+      [LayoutCssClasses.ROOT__FIXED_TABS]: fixedTabs,
+      [LayoutCssClasses.ROOT__HAS_DRAWER]: state.hasDrawer,
+      [LayoutCssClasses.ROOT__IS_SMALL_SCREEN]: state.isSmallScreen,
       [LayoutCssClasses.IS_UPGRADED]: state.isUpgraded
     });
 
+    const containerClasses = classNames(LayoutCssClasses.CONTAINER, {
+      [LayoutCssClasses.ROOT__HAS_SCROLLING_HEADER]: mode === 'scroll'
+    });
+
     return (
-      <div className={LayoutCssClasses.CONTAINER}>
+      <div className={containerClasses}>
         <div
           className={classes}
           {...otherProps}
@@ -150,7 +206,6 @@ export {
   LayoutNavigation,
   LayoutSpacer
 };
-
 
 Object.assign(Layout, {
   LayoutContent,

@@ -22,6 +22,7 @@ class ReactDoc extends React.Component {
   render() {
     return (
       <Layout
+        drawerScreenOnly='small'
         fixedHeader
         fixedDrawer
       >
@@ -36,7 +37,7 @@ class ReactDoc extends React.Component {
             </Button>
           </LayoutHeaderRow>
         </LayoutHeader>
-        <LayoutDrawer withChild>
+        <LayoutDrawer cloneChild>
           <ReactDocMenu
             {...this.props}
           />

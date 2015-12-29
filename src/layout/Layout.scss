@@ -1,1 +1,7 @@
 @import '~material-design-lite/src/layout/layout';
+
+.mdl-layout__header {
+  &.is-animating {
+    transition: 0.3s;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import LayoutCssClasses from './constants/LayoutCssClasses';
+import * as LayoutCssClasses from './constants/LayoutCssClasses';
 
 class LayoutTitle extends React.Component {
   render() {

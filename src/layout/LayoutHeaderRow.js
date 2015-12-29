@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import LayoutTitle from './LayoutTitle';
 import LayoutSpacer from './LayoutSpacer';
 
-import LayoutCssClasses from './constants/LayoutCssClasses';
+import * as LayoutCssClasses from './constants/LayoutCssClasses';
 
 const LayoutHeaderRow = props => {
   const { className, title, children, ...otherProps } = props;

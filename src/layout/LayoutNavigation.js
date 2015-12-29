@@ -2,9 +2,9 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import cloneChildren from '../utils/cloneChildren';
 import Spacer from './LayoutSpacer';
-import LayoutCssClasses from './constants/LayoutCssClasses';
+import * as LayoutCssClasses from './constants/LayoutCssClasses';
 
-const Navigation = props => {
+const LayoutNavigation = props => {
   const { className, children, ...otherProps } = props;
 
   const classes = classNames(LayoutCssClasses.NAVIGATION, className);
@@ -19,8 +19,9 @@ const Navigation = props => {
     </nav>
   );
 };
-Navigation.propTypes = {
+
+LayoutNavigation.propTypes = {
   className: PropTypes.string
 };
 
-export default Navigation;
+export default LayoutNavigation;

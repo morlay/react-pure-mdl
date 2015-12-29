@@ -1,8 +1,7 @@
 import React, { Component, PropTypes, Children, cloneElement } from 'react';
 import classNames from 'classnames';
-import LayoutTitle from './LayoutTitle';
 
-import LayoutCssClasses from './constants/LayoutCssClasses';
+import * as LayoutCssClasses from './constants/LayoutCssClasses';
 
 class LayoutDrawer extends Component {
   static propTypes = {
@@ -11,30 +10,35 @@ class LayoutDrawer extends Component {
     /**
      * merge child
      */
-    withChild: PropTypes.bool,
+    cloneChild: PropTypes.bool,
     open: PropTypes.bool
   };
 
   render() {
-    const { withChild, className, open, title, children, ...otherProps } = this.props;
+    const {
+      open,
+      cloneChild,
+      className,
+      children,
+      ...otherProps
+      } = this.props;
 
     const classes = classNames(className, LayoutCssClasses.DRAWER, {
       [LayoutCssClasses.IS_DRAWER_OPEN]: open
     });
 
-    if (withChild) {
+    if (cloneChild) {
       return cloneElement(Children.only(children), {
-        className: classNames(classes),
-        ...otherProps
+        ...otherProps,
+        className: classNames(classes)
       });
     }
 
     return (
       <div
-        className={classes}
         {...otherProps}
+        className={classes}
       >
-        {title ? <LayoutTitle>title</LayoutTitle> : null}
         {children}
       </div>
     );

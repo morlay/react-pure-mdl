@@ -7,13 +7,6 @@ import TabBar from './TabBar';
 
 import TabsCssClasses from './constants/TabsCssClasses';
 
-const TabPropType = (props, propName, componentName) => {
-  const prop = props[propName];
-  if (prop.type !== Tab) {
-    return new Error('`' + componentName + '` only accepts `Tab` as children.');
-  }
-};
-
 /**
  * @exampleFile ./__examples__/Tabs.js
  */
@@ -21,8 +14,8 @@ class Tabs extends React.Component {
   static propTypes = {
     activeTab: PropTypes.number,
     children: PropTypes.oneOfType([
-      TabPropType,
-      PropTypes.arrayOf(TabPropType)
+      Tab.PropType,
+      PropTypes.arrayOf(Tab.PropType)
     ]),
     className: PropTypes.string,
     tabBarProps: PropTypes.object,

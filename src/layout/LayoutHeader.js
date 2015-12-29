@@ -1,58 +1,123 @@
-import React from 'react';
+import React, { Component, PropTypes, cloneElement, Children } from 'react';
 import classNames from 'classnames';
+import { findDOMNode } from 'react-dom';
 import LayoutHeaderRow from './LayoutHeaderRow';
 import LayoutHeaderTabs from './LayoutHeaderTabs';
-import Icon from '../icons/Icon';
 
-import LayoutCssClasses from './constants/LayoutCssClasses';
+import * as LayoutCssClasses from './constants/LayoutCssClasses';
 
-const LayoutHeader = props => {
-  const { withDrawerBtn, onDrawerBtnClick, className, scroll, seamed, title, transparent, waterfall, children, ...otherProps } = props;
+class LayoutHeader extends Component {
+  static propTypes = {
+    drawerBtn: PropTypes.node,
+    onDrawerBtnClick: PropTypes.func,
+    isCompact: PropTypes.bool,
 
-  const classes = classNames(LayoutCssClasses.HEADER, {
-    [LayoutCssClasses.HEADER_SEAMED]: seamed,
-    [LayoutCssClasses.HEADER_WATERFALL]: waterfall,
-    [LayoutCssClasses.HEADER_SCROLL]: scroll,
-    [LayoutCssClasses.HEADER_TRANSPARENT]: transparent
-  }, className);
+    transparent: PropTypes.bool,
 
-  let isRowOrTab = false;
+    className: PropTypes.string,
+    /**
+     * need to config this on Layout
+     */
+    mode: PropTypes.oneOf(['standard', 'seamed', 'waterfall', 'scroll']),
 
-  React.Children.forEach(children, child => {
-    if (child && (child.type === LayoutHeaderRow || child.type === LayoutHeaderTabs)) {
-      isRowOrTab = true;
+    title: React.PropTypes.node,
+    children: React.PropTypes.node
+  };
+
+  static defaultProps = {
+    isCompact: false,
+    mode: 'standard'
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isCompact: props.isCompact,
+      isAnimating: false
+    };
+  }
+
+  componentDidMount() {
+    if (this.props.mode === 'waterfall') {
+      findDOMNode(this).addEventListener('transitionend', this._handlerHeaderTransitionEnd.bind(this));
     }
-  });
+  }
 
-  return (
-    <header
-      className={classes}
-      {...otherProps}
-    >
-      {withDrawerBtn ? (
-        <div
-          className={LayoutCssClasses.DRAWER_BTN}
-          onClick={onDrawerBtnClick}
-        >
-          <Icon name='menu'/>
-        </div>) : null}
-      {isRowOrTab ? children : (
-        <LayoutHeaderRow title={title}>{children}</LayoutHeaderRow>
-      )}
-    </header>
-  );
-};
+  componentWillReceiveProps(nextProps) {
+    if (this.props.mode === 'waterfall' || nextProps.mode === 'waterfall') {
+      if (this.state.isAnimating) {
+        return;
+      }
 
-LayoutHeader.propTypes = {
-  withDrawerBtn: React.PropTypes.bool,
-  onDrawerBtnClick: React.PropTypes.func,
-  className: React.PropTypes.string,
-  scroll: React.PropTypes.bool,
-  seamed: React.PropTypes.bool,
-  title: React.PropTypes.node,
-  transparent: React.PropTypes.bool,
-  waterfall: React.PropTypes.bool,
-  children: React.PropTypes.node
-};
+      if (nextProps.isCompact !== this.state.isCompact) {
+        this.setState({
+          isCompact: nextProps.isCompact,
+          isAnimating: true
+        });
+      }
+    }
+  }
+
+  _handlerHeaderTransitionEnd() {
+    this.setState({
+      isAnimating: false
+    });
+  }
+
+  cloneChildren(children) {
+    return Children.map(children, (child) => {
+      if (child.type === LayoutHeaderTabs) {
+        return cloneElement(child, {
+          mode: this.props.mode
+        });
+      }
+      if (child.type === LayoutHeaderRow) {
+        return child;
+      }
+      return (
+        <LayoutHeaderRow title={this.props.title}>
+          {child}
+        </LayoutHeaderRow>
+      );
+    });
+  }
+
+  render() {
+    const {
+      isCompact,
+      isAnimating
+      } = this.state;
+    const {
+      drawerBtn,
+      onDrawerBtnClick,
+      className,
+      transparent,
+      mode,
+      children,
+      ...otherProps
+      } = this.props;
+
+    const classes = classNames(className, LayoutCssClasses.HEADER, {
+      [`${LayoutCssClasses.HEADER}--${mode}`]: mode && mode !== 'standard',
+      [LayoutCssClasses.HEADER__TRANSPARENT]: transparent,
+      [LayoutCssClasses.CASTING_SHADOW]: mode === 'standard' || isCompact,
+      [LayoutCssClasses.IS_COMPACT]: isCompact,
+      [LayoutCssClasses.IS_ANIMATING]: isAnimating
+    });
+
+    return (
+      <header
+        className={classes}
+        {...otherProps}
+      >
+        {drawerBtn ? cloneElement(drawerBtn, {
+          className: LayoutCssClasses.DRAWER_BTN,
+          onClick: onDrawerBtnClick
+        }) : null}
+        {this.cloneChildren(children)}
+      </header>
+    );
+  }
+}
 
 export default LayoutHeader;

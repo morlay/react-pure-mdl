@@ -1,8 +1,8 @@
 import React from 'react';
-import LayoutCssClasses from './constants/LayoutCssClasses';
+import * as LayoutCssClasses from './constants/LayoutCssClasses';
 
-const Spacer = () => {
+const LayoutSpacer = () => {
   return <span className={LayoutCssClasses.SPACER}/>;
 };
 
-export default Spacer;
+export default LayoutSpacer;
