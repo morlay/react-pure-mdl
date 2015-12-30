@@ -70,7 +70,8 @@ class Layout extends React.Component {
         isUpgraded: true
       }, () => {
         this._screenSizeMediaQuery = global.matchMedia((this.Constants.MAX_WIDTH));
-        this._screenSizeMediaQuery.addListener(this._screenSizeHandler.bind(this));
+        this._boundScreenSizeHandler = this._screenSizeHandler.bind(this);
+        this._screenSizeMediaQuery.addListener(this._boundScreenSizeHandler);
         this._screenSizeHandler();
         if (this.props.mode === 'waterfall') {
           this._toggleHeaderCompact(findDOMNode(this.refs.content));
@@ -88,6 +89,7 @@ class Layout extends React.Component {
   }
 
   componentWillUnmount() {
+    this._screenSizeMediaQuery.removeListener(this._boundScreenSizeHandler);
     this._screenSizeMediaQuery = null;
   }
 
