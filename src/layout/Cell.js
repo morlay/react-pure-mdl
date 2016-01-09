@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'React';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 import GridCssClasses from './constants/GridCssClasses';
