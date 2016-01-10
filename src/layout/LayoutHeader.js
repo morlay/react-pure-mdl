@@ -39,7 +39,8 @@ class LayoutHeader extends Component {
 
   componentDidMount() {
     if (this.props.mode === 'waterfall') {
-      findDOMNode(this).addEventListener('transitionend', this._handlerHeaderTransitionEnd.bind(this));
+      findDOMNode(this)
+        .addEventListener('transitionend', this._handlerHeaderTransitionEnd.bind(this));
     }
   }
 

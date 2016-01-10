@@ -24,7 +24,7 @@ class Slider extends Component {
 
   static defaultProps = {
     onChange: () => null
-  }
+  };
 
   constructor(props) {
     super(props);

@@ -11,11 +11,11 @@ class Tab extends React.Component {
     onTabClick: PropTypes.func,
     style: PropTypes.object,
     tabId: PropTypes.number
-  }
+  };
 
   static defaultProps = {
     style: {}
-  }
+  };
 
   _handleClick() {
     this.props.onTabClick(this.props.tabId);

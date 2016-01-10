@@ -15,6 +15,8 @@ export default (conf) => {
   if (!argv.noWebpack) {
     const webpackConfig = webpackConf(conf);
 
+    webpackConfig.watch = true;
+
     webpackConfig.entry.app = ['webpack-hot-middleware/client']
       .concat(webpackConfig.entry.app);
 

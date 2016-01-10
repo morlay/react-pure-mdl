@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 
-import Layout, { LayoutHeader, LayoutHeaderRow, LayoutHeaderTabs, LayoutDrawer, LayoutContent } from '../../layout/Layout';
+import Layout, {
+  LayoutHeader,
+  LayoutHeaderRow,
+  LayoutHeaderTabs,
+  LayoutDrawer,
+  LayoutContent
+} from '../../layout/Layout';
 import Tab from '../Tab';
 
 class LayoutFixedTabsDemo extends Component {
 
   state = {
     activeTab: 1
-  }
+  };
 
   handleTabChange(tabId) {
     this.setState({ activeTab: tabId });

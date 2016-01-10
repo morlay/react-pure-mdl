@@ -43,7 +43,7 @@ class Menu extends React.Component {
   static defaultProps = {
     align: 'left',
     valign: 'bottom'
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -59,7 +59,11 @@ class Menu extends React.Component {
 
   bindDocumentEvent(evt) {
     const callback = (e) => {
-      if (e !== evt && !this.state.animating && e.target.parentNode !== findDOMNode(this.refs.menu)) {
+      if (
+        e !== evt
+        && !this.state.animating &&
+        e.target.parentNode !== findDOMNode(this.refs.menu)
+      ) {
         document.removeEventListener('click', callback);
         this.hideMenu();
       }
@@ -75,14 +79,24 @@ class Menu extends React.Component {
     const forSize = query.offset(findDOMNode(this.refs.for));
     const menuSize = query.offset($menu);
 
-    $container.style.width = menuSize.width;
-    $container.style.height = menuSize.height;
+    Object.assign($container.style, {
+      width: menuSize.width,
+      height: menuSize.height,
+      top: (
+        this.props.valign === 'top' ?
+        forSize.top - menuSize.height :
+        forSize.top + forSize.height
+      ) + 'px',
+      left: (
+        this.props.align === 'left' ? forSize.left :
+        forSize.left - menuSize.width + forSize.width
+      ) + 'px'
+    });
 
-    $outline.style.width = menuSize.width;
-    $outline.style.height = menuSize.height;
-
-    $container.style.top = (this.props.valign === 'top' ? forSize.top - menuSize.height : forSize.top + forSize.height) + 'px';
-    $container.style.left = (this.props.align === 'left' ? forSize.left : forSize.left - menuSize.width + forSize.width) + 'px';
+    Object.assign($outline.style, {
+      width: menuSize.width,
+      height: menuSize.height
+    });
   }
 
   applyClip($element, height, width) {
@@ -96,9 +110,13 @@ class Menu extends React.Component {
       ]
         .map((val) => val + 'px')
         .join(' ');
-      $element.style.clip = `rect(${rectValue})`;
+      Object.assign($element.style, {
+        clip: `rect(${rectValue})`
+      });
     } else {
-      $element.style.clip = '';
+      Object.assign($element.style, {
+        clip: ''
+      });
     }
   }
 
@@ -106,7 +124,9 @@ class Menu extends React.Component {
     const $menu = findDOMNode(this.refs.menu);
     const menuSize = query.offset($menu);
 
-    const transitionDuration = Constants.TRANSITION_DURATION_SECONDS * Constants.TRANSITION_DURATION_FRACTION;
+    const transitionDuration =
+      Constants.TRANSITION_DURATION_SECONDS *
+      Constants.TRANSITION_DURATION_FRACTION;
 
     Object.keys(this.refs)
       .filter((key) => {
@@ -119,7 +139,10 @@ class Menu extends React.Component {
         const $element = findDOMNode(element);
         let itemDelay = null;
         if (this.props.valign === 'top') {
-          itemDelay = ((menuSize.height - $element.offsetTop - $element.offsetHeight) / menuSize.height * transitionDuration);
+          itemDelay = (
+            (menuSize.height - $element.offsetTop - $element.offsetHeight) /
+            menuSize.height * transitionDuration
+          );
         } else {
           itemDelay = ($element.offsetTop / menuSize.height * transitionDuration);
         }

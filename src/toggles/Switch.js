@@ -18,7 +18,7 @@ class Switch extends React.Component {
     className: PropTypes.string,
     disabled: PropTypes.bool,
     onChange: PropTypes.func
-  }
+  };
 
   render() {
     const { className, label, checked, focus, disabled, ...inputProps } = this.props;

@@ -1,6 +1,11 @@
 import React from 'react';
 
-import Layout, { LayoutHeader, LayoutNavigation, LayoutHeaderRow, LayoutContent } from '../../layout/Layout';
+import Layout, {
+  LayoutHeader,
+  LayoutNavigation,
+  LayoutHeaderRow,
+  LayoutContent
+} from '../../layout/Layout';
 
 const LayoutScrollingHeader = () => {
   return (

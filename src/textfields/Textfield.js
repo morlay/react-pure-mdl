@@ -161,6 +161,7 @@ class Textfield extends React.Component {
     ];
 
     const isDirty = required || this.hasValue(value);
+    const isInvalid = isDirty && (novalidate ? error && error.length > 0 : !valid);
 
     const containerClasses = classNames(TextfieldCssClasses.ROOT, {
       [TextfieldCssClasses.ROOT__FLOATING_LABEL]: floatingLabel,
@@ -169,14 +170,16 @@ class Textfield extends React.Component {
       [TextfieldCssClasses.ROOT__EXPANDABLE]: expandableIcon,
       [TextfieldCssClasses.IS_UPGRADED]: true,
       [TextfieldCssClasses.IS_DIRTY]: isDirty,
-      [TextfieldCssClasses.IS_INVALID]: isDirty && (novalidate ? error && error.length > 0 : !valid),
+      [TextfieldCssClasses.IS_INVALID]: isInvalid,
       [TextfieldCssClasses.IS_DISABLED]: disabled,
       [TextfieldCssClasses.IS_FOCUSED]: this.state.focus
     }, className);
 
-    const field = expandableIcon
-      ? React.createElement('div', { className: TextfieldCssClasses.EXPANDABLE_HOLDER }, inputAndLabelError)
-      : inputAndLabelError;
+    const field = expandableIcon ?
+      React.createElement('div', {
+        className: TextfieldCssClasses.EXPANDABLE_HOLDER
+      }, inputAndLabelError) :
+      inputAndLabelError;
 
     return (
       <div

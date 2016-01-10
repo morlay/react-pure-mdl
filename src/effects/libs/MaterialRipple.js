@@ -12,7 +12,7 @@ export class MaterialRipple {
     INITIAL_OPACITY: '0.4',
     FINAL_OPACITY: '0',
     FINAL_SCALE: ''
-  }
+  };
 
   CssClasses_ = {
     RIPPLE_CENTER: 'mdl-ripple--center',
@@ -20,7 +20,7 @@ export class MaterialRipple {
     RIPPLE: 'mdl-ripple',
     IS_ANIMATING: 'is-animating',
     IS_VISIBLE: 'is-visible'
-  }
+  };
 
   downHandler_(event) {
     if (!this.rippleElement_.style.width && !this.rippleElement_.style.height) {

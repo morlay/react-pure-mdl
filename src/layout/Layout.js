@@ -187,7 +187,7 @@ class Layout extends React.Component {
           {state.hasDrawer ? (
             <LayoutObfuscator
               open={state.isDrawerOpen}
-              onClick={this._toggleDrawer.bind(this)}
+              onClick={() => this._toggleDrawer()}
             />
           ) : null}
         </div>

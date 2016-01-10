@@ -1,6 +1,12 @@
 import React from 'react';
 
-import Layout, { LayoutHeader, LayoutNavigation, LayoutTitle, LayoutDrawer, LayoutContent } from '../../layout/Layout';
+import Layout, {
+  LayoutHeader,
+  LayoutNavigation,
+  LayoutTitle,
+  LayoutDrawer,
+  LayoutContent
+} from '../../layout/Layout';
 
 const LayoutFixed = () => {
   return (

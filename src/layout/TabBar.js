@@ -7,11 +7,11 @@ class TabBar extends React.Component {
     className: PropTypes.string,
     cssPrefix: PropTypes.string.isRequired,
     onChange: PropTypes.func
-  }
+  };
 
   static defaultProps = {
     activeTab: 0
-  }
+  };
 
   _handleClickTab(tabId) {
     if (this.props.onChange) {

@@ -58,14 +58,24 @@ class HeaderTabs extends Component {
   render() {
     const { leftBtnActive, rightBtnActive } = this.state;
     const { mode, className, children, leftBtn, rightBtn, ...otherProps } = this.props;
+    const leftBtnClasses = classNames(
+      LayoutCssClasses.TAB_BAR_BUTTON,
+      LayoutCssClasses.TAB_BAR_LEFT_BUTTON, {
+        [LayoutCssClasses.IS_ACTIVE]: leftBtnActive
+      }
+    );
+    const rightBtnClasses = classNames(
+      LayoutCssClasses.TAB_BAR_BUTTON,
+      LayoutCssClasses.TAB_BAR_RIGHT_BUTTON, {
+        [LayoutCssClasses.IS_ACTIVE]: rightBtnActive
+      }
+    );
 
     return (
       <div className={LayoutCssClasses.TAB_BAR_CONTAINER}>
         <div
           onClick={e => this.handleTabBtnClick(e, -1)}
-          className={classNames(LayoutCssClasses.TAB_BAR_BUTTON, LayoutCssClasses.TAB_BAR_LEFT_BUTTON, {
-            [LayoutCssClasses.IS_ACTIVE]: leftBtnActive
-          })}
+          className={leftBtnClasses}
         >
           {leftBtn}
         </div>
@@ -81,9 +91,7 @@ class HeaderTabs extends Component {
         </TabBar>
         <div
           onClick={e => this.handleTabBtnClick(e, 1)}
-          className={classNames(LayoutCssClasses.TAB_BAR_BUTTON, LayoutCssClasses.TAB_BAR_RIGHT_BUTTON, {
-            [LayoutCssClasses.IS_ACTIVE]: rightBtnActive
-          })}
+          className={rightBtnClasses}
         >
           {rightBtn}
         </div>
