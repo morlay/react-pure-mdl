@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Tab from './Tab';
 import TabBar from './TabBar';
 
-import TabsCssClasses from './constants/TabsCssClasses';
+import * as TabsCssClasses from './constants/TabsCssClasses';
 
 /**
  * @exampleFile ./__examples__/Tabs.js
@@ -17,13 +17,15 @@ class Tabs extends React.Component {
       Tab.PropType,
       PropTypes.arrayOf(Tab.PropType)
     ]),
+    ripple: PropTypes.bool,
     className: PropTypes.string,
     tabBarProps: PropTypes.object,
     onChange: PropTypes.func
   };
 
   render() {
-    const { tabBarProps, activeTab, className, onChange, children, ...otherProps } = this.props;
+    const { tabBarProps, ripple, activeTab,
+      className, onChange, children, ...otherProps } = this.props;
 
     const classes = classNames(TabsCssClasses.ROOT, className, {
       [TabsCssClasses.IS_UPGRADED]: true
@@ -32,6 +34,7 @@ class Tabs extends React.Component {
     return (
       <div className={classes} {...otherProps}>
         <TabBar
+          ripple={ripple}
           cssPrefix={TabsCssClasses.ROOT}
           activeTab={activeTab}
           onChange={onChange}

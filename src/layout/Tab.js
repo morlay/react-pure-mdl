@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
-import TabsCssClasses from './constants/TabsCssClasses';
+import * as TabsCssClasses from './constants/TabsCssClasses';
+
+import Ripple from '../effects/Ripple';
 
 class Tab extends React.Component {
   static propTypes = {
@@ -10,11 +12,19 @@ class Tab extends React.Component {
     cssPrefix: PropTypes.string,
     onTabClick: PropTypes.func,
     style: PropTypes.object,
-    tabId: PropTypes.number
+    tabId: PropTypes.number,
+    ripple: PropTypes.bool,
+    renderRippleContainer: PropTypes.func
   };
 
+
   static defaultProps = {
-    style: {}
+    style: {},
+    renderRippleContainer: () => (
+      <Ripple
+        className={TabsCssClasses.RIPPLE_CONTAINER}
+      />
+    )
   };
 
   _handleClick() {
@@ -22,8 +32,8 @@ class Tab extends React.Component {
   }
 
   render() {
-    const { active, className, cssPrefix, tabId,
-      onTabClick, style, ...otherProps } = this.props;
+    const { active, className, cssPrefix, ripple,
+      renderRippleContainer, style, ...otherProps } = this.props;
 
     const classes = classNames({
       [`${cssPrefix}__tab`]: true,
@@ -38,6 +48,7 @@ class Tab extends React.Component {
         onClick={(e) => this._handleClick(e)}
         style={style} {...otherProps}
       >
+        {ripple && renderRippleContainer()}
         {this.props.children}
       </a>
     );

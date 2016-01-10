@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 import connectToggle from './libs/connectToggle';
+import Ripple from '../effects/Ripple';
 
 import * as CheckboxCssClasses from './constants/CheckboxCssClasses';
 
@@ -17,11 +18,23 @@ class Checkbox extends React.Component {
     defaultChecked: PropTypes.bool,
     disabled: PropTypes.bool,
     focus: PropTypes.bool,
-    label: PropTypes.string
+    label: PropTypes.string,
+    ripple: PropTypes.bool,
+    renderRippleContainer: PropTypes.func
+  };
+
+  static defaultProps = {
+    renderRippleContainer: () => (
+      <Ripple
+        className={CheckboxCssClasses.RIPPLE_CONTAINER}
+        center
+      />
+    )
   };
 
   render() {
-    const { className, label, disabled, checked, focus, ...inputProps } = this.props;
+    const { className, label, disabled, checked, focus,
+      ripple, renderRippleContainer, ...inputProps } = this.props;
 
     const classes = classNames(className, CheckboxCssClasses.ROOT, {
       [CheckboxCssClasses.IS_UPGRADED]: true,
@@ -44,6 +57,7 @@ class Checkbox extends React.Component {
         <span className={CheckboxCssClasses.BOX_OUTLINE}>
           <span className={CheckboxCssClasses.TICK_OUTLINE}/>
         </span>
+        {ripple && renderRippleContainer()}
       </label>
     );
   }

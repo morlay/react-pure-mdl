@@ -14,7 +14,6 @@ import MenuItem from './MenuItem';
 const Constants = {
   TRANSITION_DURATION_SECONDS: 0.3,
   TRANSITION_DURATION_FRACTION: 0.8,
-  // Todo, make this work with ripple
   CLOSE_TIMEOUT: 150
 };
 
@@ -34,6 +33,7 @@ class Menu extends React.Component {
     target: PropTypes.node.isRequired,
     align: PropTypes.oneOf(['left', 'right']),
     valign: PropTypes.oneOf(['bottom', 'top']),
+    ripple: PropTypes.bool,
     children: PropTypes.oneOfType([
       MenuItemPropType,
       PropTypes.arrayOf(MenuItemPropType)
@@ -165,9 +165,11 @@ class Menu extends React.Component {
   }
 
   hideMenu() {
-    this.setState({
-      show: false
-    });
+    setTimeout(() => {
+      this.setState({
+        show: false
+      });
+    }, Constants.CLOSE_TIMEOUT);
   }
 
   showMenu(evt) {
@@ -182,6 +184,7 @@ class Menu extends React.Component {
   render() {
     const {
       align,
+      ripple,
       children,
       className,
       target,
@@ -229,7 +232,8 @@ class Menu extends React.Component {
             {
               Children.map(children, (child, idx) => {
                 return cloneElement(child, {
-                  ref: 'item-' + idx
+                  ref: 'item-' + idx,
+                  ripple
                 });
               })
             }

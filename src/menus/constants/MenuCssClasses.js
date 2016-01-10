@@ -6,7 +6,7 @@ export default {
 
   ITEM: 'mdl-menu__item',
 
-  ITEM_RIPPLE_CONTAINER: 'mdl-menu__item-ripple-container',
+  ITEM_RIPPLE_CONTAINER: 'mdl-menu__item--ripple-container',
 
   RIPPLE_EFFECT: 'mdl-js-ripple-effect',
   RIPPLE_IGNORE_EVENTS: 'mdl-js-ripple-effect--ignore-events',

@@ -3,6 +3,7 @@ import './IconToggle.scss';
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import Icon from '../icons/Icon';
+import Ripple from '../effects/Ripple';
 
 import connectToggle from './libs/connectToggle';
 
@@ -17,11 +18,23 @@ class IconToggle extends Component {
     focus: PropTypes.bool,
     className: PropTypes.string,
     disabled: PropTypes.bool,
-    name: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
+    ripple: PropTypes.bool,
+    renderRippleContainer: PropTypes.func
+  };
+
+  static defaultProps = {
+    renderRippleContainer: () => (
+      <Ripple
+        className={IconToggleCssClasses.RIPPLE_CONTAINER}
+        center
+      />
+    )
   };
 
   render() {
-    const { className, name, disabled, checked, focus, ...inputProps } = this.props;
+    const { className, name, disabled, checked, focus,
+      ripple, renderRippleContainer, ...inputProps } = this.props;
 
     const classes = classNames(className, IconToggleCssClasses.ROOT, {
       [IconToggleCssClasses.IS_UPGRADED]: true,
@@ -43,6 +56,7 @@ class IconToggle extends Component {
           className={IconToggleCssClasses.LABEL}
           name={name}
         />
+        {ripple && renderRippleContainer()}
       </label>
     );
   }

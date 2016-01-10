@@ -4,8 +4,10 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 import connectToggle from './libs/connectToggle';
+import Ripple from '../effects/Ripple';
 
 import * as SwitchCssClasses from './constants/SwitchCssClasses';
+
 
 /**
  * @exampleFile ./__examples__/Switch.js
@@ -17,11 +19,23 @@ class Switch extends React.Component {
     focus: PropTypes.bool,
     className: PropTypes.string,
     disabled: PropTypes.bool,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    ripple: PropTypes.bool,
+    renderRippleContainer: PropTypes.func
+  };
+
+  static defaultProps = {
+    renderRippleContainer: () => (
+      <Ripple
+        className={SwitchCssClasses.RIPPLE_CONTAINER}
+        center
+      />
+    )
   };
 
   render() {
-    const { className, label, checked, focus, disabled, ...inputProps } = this.props;
+    const { className, label, checked, focus, disabled,
+      ripple, renderRippleContainer, ...inputProps } = this.props;
 
     const classes = classNames(className, SwitchCssClasses.ROOT, {
       [SwitchCssClasses.IS_UPGRADED]: true,
@@ -44,6 +58,7 @@ class Switch extends React.Component {
         <span className={SwitchCssClasses.THUMB}>
           <span className={SwitchCssClasses.FOCUS_HELPER}/>
         </span>
+        {ripple && renderRippleContainer()}
       </label>
     );
   }

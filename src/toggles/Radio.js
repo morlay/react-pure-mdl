@@ -4,6 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 
 import connectToggle from './libs/connectToggle';
+import Ripple from '../effects/Ripple';
 
 import * as RadioCssClasses from './constants/RadioCssClasses';
 
@@ -22,11 +23,23 @@ class Radio extends Component {
     value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number
-    ]).isRequired
+    ]).isRequired,
+    ripple: PropTypes.bool,
+    renderRippleContainer: PropTypes.func
+  };
+
+  static defaultProps = {
+    renderRippleContainer: () => (
+      <Ripple
+        className={RadioCssClasses.RIPPLE_CONTAINER}
+        center
+      />
+    )
   };
 
   render() {
-    const { label, checked, disabled, focus, className, ...inputProps } = this.props;
+    const { label, checked, disabled, focus, className,
+      ripple, renderRippleContainer, ...inputProps } = this.props;
 
     const classes = classNames(className, RadioCssClasses.ROOT, {
       [RadioCssClasses.IS_UPGRADED]: true,
@@ -47,6 +60,7 @@ class Radio extends Component {
         {label && <span className={RadioCssClasses.LABEL}>{label}</span>}
         <span className={RadioCssClasses.RADIO_OUTER_CIRCLE}/>
         <span className={RadioCssClasses.RADIO_INNER_CIRCLE}/>
+        {ripple && renderRippleContainer()}
       </label>
     );
   }

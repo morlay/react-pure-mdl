@@ -6,6 +6,7 @@ class TabBar extends React.Component {
     activeTab: PropTypes.number,
     className: PropTypes.string,
     cssPrefix: PropTypes.string.isRequired,
+    ripple: PropTypes.bool,
     onChange: PropTypes.func
   };
 
@@ -20,7 +21,7 @@ class TabBar extends React.Component {
   }
 
   render() {
-    const { activeTab, className, cssPrefix,
+    const { activeTab, className, ripple, cssPrefix,
       children, ...otherProps } = this.props;
 
     const classes = classNames({
@@ -33,11 +34,11 @@ class TabBar extends React.Component {
           return React.cloneElement(child, {
             cssPrefix,
             tabId,
+            ripple,
             active: tabId === activeTab,
             onTabClick: e => this._handleClickTab(e)
           });
         })}
-
       </div>
     );
   }

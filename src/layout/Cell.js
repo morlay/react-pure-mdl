@@ -29,6 +29,10 @@ const Cell = (props) => {
   );
 };
 
+Cell.defaultProps = {
+  col: 12
+};
+
 Cell.propTypes = {
   className: PropTypes.string,
   align: PropTypes.oneOf(['top', 'middle', 'bottom', 'stretch']),

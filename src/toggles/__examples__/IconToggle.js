@@ -2,21 +2,26 @@ import React from 'react';
 
 import IconToggle from '../IconToggle';
 
+import Grid, { Cell } from '../../layout/Grid';
+
 const IconToggleDemo = () => {
   return (
-    <div>
-      <IconToggle
-        name='format_bold'
-        defaultChecked
-      />
-      <IconToggle
-        name='format_italic'
-      />
-      <IconToggle
-        name='format_bold'
-        disabled
-      />
-    </div>
+    <Grid>
+      <Cell col={12}>
+        <IconToggle
+          name='format_bold'
+          defaultChecked
+        />
+        <IconToggle
+          ripple
+          name='format_italic'
+        />
+        <IconToggle
+          name='format_bold'
+          disabled
+        />
+      </Cell>
+    </Grid>
   );
 };
 

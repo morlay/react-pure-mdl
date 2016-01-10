@@ -1,59 +1,68 @@
 import React from 'react';
 
 import Button from '../Button';
+import Grid, { Cell } from '../../layout/Grid';
 
 const BadgeDemo = () => {
   return (
-    <div>
-      <div>
-        {/* Raised button */}
+    <Grid>
+      <Cell col={12}>
         <Button raised>Button</Button>
-
-        {/* Disabled Raised button */}
+        <Button
+          raised
+          ripple
+        >
+          Button with Ripple
+        </Button>
         <Button
           raised
           disabled
         >
           Button
         </Button>
-      </div>
+      </Cell>
 
-      <div>
-        {/* Colored Raised button */}
+      <Cell col={12}>
         <Button
           raised
           colored
         >
           Button
         </Button>
-
-        {/* Accent-colored button without ripple */}
+        <Button
+          raised
+          colored
+          ripple
+        >
+          Button with Ripple
+        </Button>
         <Button
           raised
           accent
         >
           Button
         </Button>
-      </div>
+      </Cell>
 
-      <div>
-        {/* Flat button */}
+      <Cell col={12}>
         <Button>
           Button
         </Button>
 
-        {/* Disabled flat button */}
+        <Button
+          ripple
+        >
+          Button with Ripple
+        </Button>
         <Button disabled>Button</Button>
-      </div>
+      </Cell>
 
-      <div>
-        {/* Primary colored flat button */}
+      <Cell col={12}>
         <Button primary>Button</Button>
 
-        {/* Accent-colored flat button */}
         <Button accent>Button</Button>
-      </div>
-    </div>
+      </Cell>
+    </Grid>
   );
 };
 

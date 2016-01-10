@@ -10,7 +10,10 @@ const MenuDemo = () => {
       <Grid>
         <Cell col={6}>
 
-          <Menu target={<IconButton name='more_vert'/>}>
+          <Menu
+            ripple
+            target={<IconButton name='more_vert'/>}
+          >
             <MenuItem>Some Action</MenuItem>
             <MenuItem>Another Action</MenuItem>
             <MenuItem disabled>Disabled Action</MenuItem>

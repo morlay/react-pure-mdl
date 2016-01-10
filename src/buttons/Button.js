@@ -3,6 +3,8 @@ import './Button.scss';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
+import Ripple from '../effects/Ripple';
+
 import ButtonCssClasses from './constants/ButtonCssClasses';
 
 /**
@@ -17,15 +19,19 @@ class Button extends React.Component {
     accent: PropTypes.bool,
     colored: PropTypes.bool,
     primary: PropTypes.bool,
-    raised: PropTypes.bool
+    raised: PropTypes.bool,
+    ripple: PropTypes.bool,
+    renderRippleContainer: PropTypes.func
   };
 
-  static RIPPLE_CONTAINER = ButtonCssClasses.RIPPLE_CONTAINER;
+  static defaultProps = {
+    renderRippleContainer: () => <Ripple className={ButtonCssClasses.RIPPLE_CONTAINER}/>
+  };
 
   render() {
     const { accent, className, colored,
       primary, raised, component, href,
-      children, ...otherProps } = this.props;
+      children, ripple, renderRippleContainer, ...otherProps } = this.props;
 
     const buttonClasses = classNames(ButtonCssClasses.ROOT, {
       [ButtonCssClasses.RAISED]: raised,
@@ -34,11 +40,18 @@ class Button extends React.Component {
       [ButtonCssClasses.ACCENT]: accent
     }, className);
 
-    return React.createElement(component || (href ? 'a' : 'button'), {
-      className: buttonClasses,
-      href,
-      ...otherProps
-    }, children);
+    const Comp = href ? 'a' : 'button';
+
+    return (
+      <Comp
+        className={buttonClasses}
+        href={href}
+        {...otherProps}
+      >
+        {ripple ? renderRippleContainer() : null}
+        {children}
+      </Comp>
+    );
   }
 }
 
