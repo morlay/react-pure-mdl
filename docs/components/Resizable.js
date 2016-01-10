@@ -10,11 +10,11 @@ class Resizable extends React.Component {
     width: PropTypes.number,
     height: PropTypes.number,
     onResize: PropTypes.func
-  }
+  };
 
   static defaultProps = {
     onResize: () => null
-  }
+  };
 
   constructor(props) {
     super(props);

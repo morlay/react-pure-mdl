@@ -1,7 +1,12 @@
 import React, { PropTypes } from 'react';
 import ReactDocMenu from './ReactDocMenu';
 
-import Layout, { LayoutHeader, LayoutDrawer, LayoutHeaderRow, LayoutContent } from 'src/layout/Layout';
+import Layout, {
+  LayoutHeader,
+  LayoutDrawer,
+  LayoutHeaderRow,
+  LayoutContent
+} from 'src/layout/Layout';
 import Icon from 'src/icons/Icon';
 import Button from 'src/buttons/Button';
 
@@ -12,12 +17,12 @@ class ReactDoc extends React.Component {
     reactDocJson: PropTypes.object.isRequired,
     onMenuItemClick: PropTypes.func,
     grouper: PropTypes.func
-  }
+  };
 
   static defaultProps = {
     grouper,
     onMenuItemClick: () => null
-  }
+  };
 
   render() {
     return (

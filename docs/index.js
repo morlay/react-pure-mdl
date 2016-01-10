@@ -1,7 +1,6 @@
 import './index.scss';
 
 import reactDocJson from './__generated/react-doc.json';
-import _ from 'lodash';
 
 import React, { cloneElement } from 'react';
 import ReactDOM from 'react-dom';
@@ -33,11 +32,11 @@ class Root extends React.Component {
 
   static propTypes = {
     children: React.PropTypes.node
-  }
+  };
 
   static contextTypes = {
     history: React.PropTypes.object
-  }
+  };
 
   _onMenuItemClick(groupName, componentName) {
     const history = this.context.history;

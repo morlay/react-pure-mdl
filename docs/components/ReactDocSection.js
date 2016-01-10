@@ -22,7 +22,7 @@ class ReactDocSection extends React.Component {
   static propTypes = {
     componentItem: PropTypes.object.isRequired,
     previewConfig: PropTypes.object
-  }
+  };
 
   processType(typeObject) {
     if (_.isObject(typeObject)) {

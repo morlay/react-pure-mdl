@@ -16,22 +16,19 @@ const IS_MOBILE = typeof global.navigator !== 'undefined' && (
     || global.navigator.userAgent.match(/Windows Phone/i)
   );
 
-const CodeMirrorEditor = React.createClass({
+class CodeMirrorEditor extends React.Component {
 
-  propTypes: {
+  static propTypes = {
     codeText: PropTypes.string,
     onChange: PropTypes.func,
     readOnly: PropTypes.bool,
     isMobile: PropTypes.bool
-  },
+  };
 
-  getDefaultProps(){
-    return {
-      isMobile: IS_MOBILE,
-      onChange: function () {
-      }
-    }
-  },
+  static defaultProps = {
+    isMobile: IS_MOBILE,
+    onChange: () => null
+  };
 
   componentDidMount() {
     if (this._isMobile()) {
@@ -39,60 +36,68 @@ const CodeMirrorEditor = React.createClass({
     } else {
       this._initialEditor();
     }
-  },
+  }
 
-  _initialEditor(){
+  _initialEditor() {
+    this._editor = CodeMirror.fromTextArea(
+      ReactDOM.findDOMNode(this.refs.editor),
+      {
+        mode: 'javascript',
+        lineNumbers: true,
+        lineWrapping: true,
+        matchBrackets: true,
+        tabSize: 2,
+        theme: 'solarized',
+        readOnly: this.props.readOnly
+      }
+    );
 
-    this._editor = CodeMirror.fromTextArea(ReactDOM.findDOMNode(this.refs.editor), {
-      mode: 'javascript',
-      lineNumbers: true,
-      lineWrapping: true,
-      matchBrackets: true,
-      tabSize: 2,
-      theme: 'solarized',
-      readOnly: this.props.readOnly
-    });
+    this._editor.on('change', e => this._handleChange(e));
+  }
 
-    this._editor.on('change', this._handleChange);
-
-  },
-
-  _removeEditor(){
+  _removeEditor() {
     this._editor = null;
-  },
+  }
 
   _handleChange() {
     if (!this.props.readOnly) {
       this.props.onChange(this._editor.getValue());
     }
-  },
+  }
 
-  _isMobile(){
+  _isMobile() {
     return !!this.props.isMobile;
-  },
+  }
 
   render() {
     let editor;
 
     if (this._isMobile()) {
       editor = (
-        <pre style={{overflow: 'scroll'}}>
+        <pre
+          style={{
+            overflow: 'scroll'
+          }}
+        >
           {this.props.codeText}
         </pre>
       );
     } else {
-      editor = (<textarea ref='editor'
-                          defaultValue={this.props.codeText}/>);
+      editor = (<textarea
+        ref='editor'
+        defaultValue={this.props.codeText}
+      />);
     }
 
     return (
       <div
         {...this.props}
-        className='code-mirror-editor'>
+        className='code-mirror-editor'
+      >
         {editor}
       </div>
     );
   }
-});
+}
 
 export default CodeMirrorEditor;

@@ -9,10 +9,11 @@ import { LayoutTitle, LayoutNavigation } from 'src/layout/Layout';
 class ReactDocMenu extends React.Component {
 
   static propTypes = {
+    className: PropTypes.string,
     reactDocJson: PropTypes.object,
     onMenuItemClick: PropTypes.func,
     grouper: PropTypes.func
-  }
+  };
 
   _getGroups(info) {
     return _(info)
@@ -31,11 +32,16 @@ class ReactDocMenu extends React.Component {
 
   renderMenuItem(componentList) {
     return _.map(componentList, (componentItem, idx) => {
+      const handleClick = e => this._onItemClick(
+        e,
+        this.props.grouper(componentItem.module),
+        componentItem.name
+      );
       return (
         <a
           key={idx}
           href='#'
-          onClick={e => this._onItemClick(e, this.props.grouper(componentItem.module), componentItem.name)}
+          onClick={handleClick}
         >
           {componentItem.name}
         </a>

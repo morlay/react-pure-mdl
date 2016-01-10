@@ -12,7 +12,7 @@ class ReactDocMain extends React.Component {
     previewConfig: PropTypes.object,
     params: PropTypes.object.isRequired,
     grouper: PropTypes.func
-  }
+  };
 
   static defaultProps = {
     grouper,

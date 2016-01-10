@@ -16,13 +16,13 @@ class ReactPreview extends React.Component {
     codeString: PropTypes.string,
     previewConfig: PropTypes.object,
     onSizeChange: PropTypes.func
-  }
+  };
 
   static defaultProps = {
     previewConfig: {},
     onSizeChange: () => {
     }
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -94,7 +94,10 @@ class ReactPreview extends React.Component {
             var React = require('react');
             var ReactDOM = require('react-dom');
             ${props.codeString}
-            ReactDOM.render(React.createElement(exports.default || module.exports, {}, null), document.getElementById('root'))
+            ReactDOM.render(
+              React.createElement(exports.default || module.exports, {}, null),
+              document.getElementById('root')
+            )
           })(defaultRequire, {}, {});
         })();
       `;
