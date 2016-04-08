@@ -136,7 +136,7 @@ class Textfield extends React.Component {
       id: inputId,
       key: inputId,
       rows,
-      value,
+      value: value || '',
       ref: 'input',
       onChange: (e) => this.handleChange(e),
       onFocus: (e) => this.handleFocus(e),

@@ -28,7 +28,7 @@ const CardEvent = () => {
           expand
           style={{ alignItems: 'flex-start', color: '#fff' }}
         >
-          <h4 style={{ marginTop: '0' }}>
+          <h4 style={{ marginTop: 0 }}>
             Featured event:
             <br />
             May 24, 2016

@@ -98,6 +98,7 @@ class Slider extends Component {
       >
         <input
           {...otherProps}
+          defaultValue={undefined}
           value={value}
           onChange={e => this.handleChange(e)}
           onMouseUp={e => this.handleMouseUp(e)}

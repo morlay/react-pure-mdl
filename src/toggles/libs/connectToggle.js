@@ -20,16 +20,15 @@ export default function connectToggle(TargetComponent) {
       onBlur: () => null
     };
 
-    constructor(props) {
-      super(props);
-      this.state = {
-        checked: ('defaultChecked' in props) ? props.defaultChecked : props.checked,
-        focus: false
-      };
-    }
+    state = {
+      checked: !!(('defaultChecked' in this.props)
+        ? this.props.defaultChecked : this.props.checked),
+      focus: false
+    };
 
     componentWillReceiveProps(nextProps) {
-      if (nextProps.checked !== this.state.checked) {
+      if ('checked' in nextProps && nextProps.checked !== this.state.checked) {
+        console.log('componentWillReceiveProps', nextProps.checked)
         this.setState({
           checked: nextProps.checked
         });
@@ -53,39 +52,40 @@ export default function connectToggle(TargetComponent) {
       }, TINY_TIMEOUT);
     }
 
-    handleFocus(e) {
+    handleFocus = () => {
       this.setState({
         focus: true
       }, () => {
-        this.props.onFocus(e);
+        this.props.onFocus();
       });
-    }
+    };
 
-    handleChange(e) {
+    handleChange = () => {
       this.setState({
         checked: !this.state.checked
       }, () => {
-        this.props.onChange(e);
+        this.props.onChange(this.state.checked);
       });
-    }
+    };
 
-    handleBlur(e) {
+    handleBlur = () => {
       this.setState({
         focus: false
       }, () => {
-        this.props.onBlur(e);
+        this.props.onBlur();
       });
-    }
+    };
 
     render() {
       return (
         <TargetComponent
           {...this.props}
+          defaultChecked={undefined}
           checked={this.state.checked}
           focus={this.state.focus}
-          onChange={(e) => this.handleChange(e)}
-          onFocus={(e) => this.handleFocus(e)}
-          onBlur={(e) => this.handleBlur(e)}
+          onChange={this.handleChange}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
         />
       );
     }

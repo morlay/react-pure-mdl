@@ -8,7 +8,6 @@
   },
   "rules": {
     "no-console": 0,
-    "eol-last": 0,
     "comma-dangle": [
       2,
       "never"
@@ -25,7 +24,6 @@
         ]
       }
     ],
-    "react/jsx-no-bind": 0,
     "react/no-did-mount-set-state": 0,
     "react/no-multi-comp": 0
   }

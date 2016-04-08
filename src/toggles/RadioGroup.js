@@ -21,12 +21,9 @@ class RadioGroup extends Component {
     onChange: () => null
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: ('defaultValue' in props) ? props.defaultValue : props.value
-    };
-  }
+  state = {
+    value: ('defaultValue' in this.props) ? this.props.defaultValue : this.props.value
+  };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.state.value) {
@@ -36,9 +33,9 @@ class RadioGroup extends Component {
     }
   }
 
-  handleChange(e) {
+  handleChange(child, checked) {
     this.setState({
-      value: e.target.value
+      value: checked ? child.props.value : this.state.value
     }, () => {
       this.props.onChange(this.state.value);
     });
@@ -52,18 +49,20 @@ class RadioGroup extends Component {
       children,
       component,
       ...otherProps
-      } = this.props;
+    } = this.props;
 
-    const newChildren = Children.map(children, child => {
-      return cloneElement(child, {
-        ...otherProps,
-        name,
-        checked: child.props.value === value,
-        onChange: (e) => this.handleChange(e, child)
-      });
-    });
+    const newChildren = Children.map(children, child => cloneElement(child, {
+      ...otherProps,
+      defaultValue: undefined,
+      name,
+      checked: child.props.value === value,
+      onChange: (checked) => this.handleChange(child, checked)
+    }));
 
-    return createElement(component, otherProps, newChildren);
+    return createElement(component, {
+      ...otherProps,
+      onChange: undefined
+    }, newChildren);
   }
 }
 
