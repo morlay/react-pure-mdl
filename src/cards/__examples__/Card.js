@@ -20,26 +20,24 @@ const cardMenuStyles = {
   color: '#fff'
 };
 
-const CardDemo = () => {
-  return (
-    <Shadow level={0}>
-      <Card style={cardStyles}>
-        <CardTitle style={cardTitleStyles}>
-          Welcome
-        </CardTitle>
-        <CardText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Mauris sagittis pellentesque lacus eleifend lacinia...
-        </CardText>
-        <CardActions border>
-          <Button colored>Get Started</Button>
-        </CardActions>
-        <CardMenu style={cardMenuStyles}>
-          <IconButton name='share'/>
-        </CardMenu>
-      </Card>
-    </Shadow>
-  );
-};
+const CardDemo = () => (
+  <Shadow level={0}>
+    <Card style={cardStyles}>
+      <CardTitle style={cardTitleStyles}>
+        Welcome
+      </CardTitle>
+      <CardText>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Mauris sagittis pellentesque lacus eleifend lacinia...
+      </CardText>
+      <CardActions border>
+        <Button colored>Get Started</Button>
+      </CardActions>
+      <CardMenu style={cardMenuStyles}>
+        <IconButton name='share' />
+      </CardMenu>
+    </Card>
+  </Shadow>
+);
 
 export default CardDemo;

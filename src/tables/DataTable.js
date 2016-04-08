@@ -39,37 +39,31 @@ class DataTable extends React.Component {
       <table className={classes} {...otherProps}>
         <thead>
         <tr>
-          {selectable ? (<th><Checkbox/></th>) : null}
-          {columns.map((column) => {
-            return (
-              <th
-                key={column.name}
-                className={this._getCellClass(column)}
-              >
-                {column.label}
-              </th>
-            );
-          })}
+          {selectable ? (<th><Checkbox /></th>) : null}
+          {columns.map((column) => (
+            <th
+              key={column.name}
+              className={this._getCellClass(column)}
+            >
+              {column.label}
+            </th>
+          ))}
         </tr>
         </thead>
         <tbody>
-        {data.map((elt, idx) => {
-          return (
-            <tr key={elt.key ? elt.key : idx}>
-              {selectable ? (<td><Checkbox/></td>) : null}
-              {columns.map((column) => {
-                return (
-                  <td
-                    key={column.name}
-                    className={this._getCellClass(column)}
-                  >
-                    {elt[column.name]}
-                  </td>
-                );
-              })}
-            </tr>
-          );
-        })}
+        {data.map((elt, idx) => (
+          <tr key={elt.key ? elt.key : idx}>
+            {selectable ? (<td><Checkbox /></td>) : null}
+            {columns.map((column) => (
+              <td
+                key={column.name}
+                className={this._getCellClass(column)}
+              >
+                {elt[column.name]}
+              </td>
+            ))}
+          </tr>
+        ))}
         </tbody>
       </table>
     );

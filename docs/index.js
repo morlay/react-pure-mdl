@@ -38,21 +38,21 @@ class Root extends React.Component {
     router: React.PropTypes.object
   };
 
-  _onMenuItemClick(groupName, componentName) {
+  _onMenuItemClick = (groupName, componentName) => {
     const router = this.context.router;
     if (componentName) {
       router.push(`/${groupName}/${componentName}`);
     } else if (groupName) {
       router.push(`/${groupName}`);
     } else {
-      router.push(`/`);
+      router.push('/');
     }
-  }
+  };
 
   render() {
     return (
       <ReactDoc
-        onMenuItemClick={this._onMenuItemClick.bind(this)}
+        onMenuItemClick={this._onMenuItemClick}
         reactDocJson={reactDocJson}
       >
         {cloneElement(this.props.children, {

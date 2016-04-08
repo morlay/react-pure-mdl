@@ -9,7 +9,7 @@ describe(__filename, () => {
   context('when render with prop name', () => {
     it('should have className with "material-icons"', () => {
       const iconName = 'test';
-      const wrapper = shallow(<Icon name={iconName}/>);
+      const wrapper = shallow(<Icon name={iconName} />);
       expect(wrapper.props().className).to.eql('material-icons');
       expect(wrapper.props().children).to.eql(iconName);
     });

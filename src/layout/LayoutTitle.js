@@ -1,20 +1,15 @@
-import React, { PropTypes } from 'react';
+import { createElement, PropTypes } from 'react';
 import * as LayoutCssClasses from './constants/LayoutCssClasses';
 
-class LayoutTitle extends React.Component {
-  render() {
-    const props = this.props;
-    const component = props.component ? props.component : 'h1';
-
-    return React.createElement(component, {
-      ...props,
-      className: LayoutCssClasses.TITLE
-    }, props.children);
-  }
-}
+const LayoutTitle = ({ component, children, ...otherProps }) =>
+  createElement(component || 'h1', {
+    ...otherProps,
+    className: LayoutCssClasses.TITLE
+  }, children);
 
 LayoutTitle.propTypes = {
-  component: PropTypes.string
+  component: PropTypes.string,
+  children: PropTypes.node
 };
 
 export default LayoutTitle;

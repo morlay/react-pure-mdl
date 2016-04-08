@@ -3,29 +3,26 @@ import classNames from 'classnames';
 
 import CardCssClasses from './constants/CardCssClasses';
 
-class CardTitle extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    expand: PropTypes.bool
-  };
+const CardTitle = ({ className, children, expand, ...otherProps }) => {
+  const classes = classNames(CardCssClasses.TITLE, {
+    [CardCssClasses.EXPAND]: expand
+  }, className);
 
-  render() {
-    const { className, children, expand, ...otherProps } = this.props;
+  const title = typeof children === 'string'
+    ? React.createElement('h2', { className: CardCssClasses.TITLE_TEXT }, children)
+    : children;
 
-    const classes = classNames(CardCssClasses.TITLE, {
-      [CardCssClasses.EXPAND]: expand
-    }, className);
+  return (
+    <div className={classes} {...otherProps}>
+      {title}
+    </div>
+  );
+};
 
-    const title = typeof children === 'string'
-      ? React.createElement('h2', { className: CardCssClasses.TITLE_TEXT }, children)
-      : children;
-
-    return (
-      <div className={classes} {...otherProps}>
-        {title}
-      </div>
-    );
-  }
-}
+CardTitle.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  expand: PropTypes.bool
+};
 
 export default CardTitle;

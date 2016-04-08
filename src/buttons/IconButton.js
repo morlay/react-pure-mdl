@@ -16,7 +16,7 @@ const IconButton = (props) => {
 
   return (
     <Button className={classes} {...otherProps}>
-      <Icon name={name}/>
+      <Icon name={name} />
     </Button>
   );
 };

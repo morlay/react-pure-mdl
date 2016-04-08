@@ -11,26 +11,24 @@ const cardTitleStyles = {
   background: 'url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC'
 };
 
-const CardSquare = () => {
-  return (
-    <Shadow level={0}>
-      <Card style={cardStyles}>
-        <CardTitle
-          expand
-          style={cardTitleStyles}
-        >
-          Update
-        </CardTitle>
-        <CardText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Aenan convallis.
-        </CardText>
-        <CardActions border>
-          <Button colored>View Updates</Button>
-        </CardActions>
-      </Card>
-    </Shadow>
-  );
-};
+const CardSquare = () => (
+  <Shadow level={0}>
+    <Card style={cardStyles}>
+      <CardTitle
+        expand
+        style={cardTitleStyles}
+      >
+        Update
+      </CardTitle>
+      <CardText>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Aenan convallis.
+      </CardText>
+      <CardActions border>
+        <Button colored>View Updates</Button>
+      </CardActions>
+    </Card>
+  </Shadow>
+);
 
 export default CardSquare;

@@ -4,9 +4,7 @@ import cloneChildren from '../utils/cloneChildren';
 import Spacer from './LayoutSpacer';
 import * as LayoutCssClasses from './constants/LayoutCssClasses';
 
-const LayoutNavigation = props => {
-  const { className, children, ...otherProps } = props;
-
+const LayoutNavigation = ({ className, children, ...otherProps }) => {
   const classes = classNames(LayoutCssClasses.NAVIGATION, className);
 
   return (
@@ -21,7 +19,8 @@ const LayoutNavigation = props => {
 };
 
 LayoutNavigation.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  children: PropTypes.node
 };
 
 export default LayoutNavigation;

@@ -20,38 +20,36 @@ const cardActionStyles = {
   color: '#fff'
 };
 
-const CardEvent = () => {
-  return (
-    <Shadow level={0}>
-      <Card style={cardStyles}>
-        <CardTitle
-          expand
-          style={{ alignItems: 'flex-start', color: '#fff' }}
+const CardEvent = () => (
+  <Shadow level={0}>
+    <Card style={cardStyles}>
+      <CardTitle
+        expand
+        style={{ alignItems: 'flex-start', color: '#fff' }}
+      >
+        <h4 style={{ marginTop: 0 }}>
+          Featured event:
+          <br />
+          May 24, 2016
+          <br />
+          7-11pm
+        </h4>
+      </CardTitle>
+      <CardActions
+        border
+        style={cardActionStyles}
+      >
+        <Button
+          colored
+          style={{ color: '#fff' }}
         >
-          <h4 style={{ marginTop: 0 }}>
-            Featured event:
-            <br />
-            May 24, 2016
-            <br />
-            7-11pm
-          </h4>
-        </CardTitle>
-        <CardActions
-          border
-          style={cardActionStyles}
-        >
-          <Button
-            colored
-            style={{ color: '#fff' }}
-          >
-            Add to Calendar
-          </Button>
-          <LayoutSpacer/>
-          <Icon name='event'/>
-        </CardActions>
-      </Card>
-    </Shadow>
-  );
-};
+          Add to Calendar
+        </Button>
+        <LayoutSpacer />
+        <Icon name='event' />
+      </CardActions>
+    </Card>
+  </Shadow>
+);
 
 export default CardEvent;

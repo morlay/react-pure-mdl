@@ -44,7 +44,7 @@ export const IS_ACTIVE = 'is-active';
 export const IS_UPGRADED = 'is-upgraded';
 export const IS_ANIMATING = 'is-animating';
 
-export const SPACER = `mdl-layout-spacer`;
+export const SPACER = 'mdl-layout-spacer';
 
 export const NAVIGATION = 'mdl-navigation';
 export const NAVIGATION_LINK = `${NAVIGATION}__link`;

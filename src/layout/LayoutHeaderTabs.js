@@ -27,8 +27,8 @@ class HeaderTabs extends Component {
   };
 
   static defaultProps = {
-    leftBtn: <Icon name='chevron_left'/>,
-    rightBtn: <Icon name='chevron_right'/>
+    leftBtn: <Icon name='chevron_left' />,
+    rightBtn: <Icon name='chevron_right' />
   };
 
   state = {

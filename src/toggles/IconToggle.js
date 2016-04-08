@@ -33,8 +33,10 @@ class IconToggle extends Component {
   };
 
   render() {
-    const { className, name, disabled, checked, focus,
-      ripple, renderRippleContainer, ...inputProps } = this.props;
+    const {
+      className, name, disabled, checked, focus,
+      ripple, renderRippleContainer, ...inputProps
+    } = this.props;
 
     const classes = classNames(className, IconToggleCssClasses.ROOT, {
       [IconToggleCssClasses.IS_UPGRADED]: true,

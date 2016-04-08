@@ -28,7 +28,7 @@ class LayoutWithTabs extends Component {
             fixedHeader
           >
             <LayoutHeader>
-              <LayoutHeaderRow title='Title'/>
+              <LayoutHeaderRow title='Title' />
               <LayoutHeaderTabs
                 activeTab={this.state.activeTab}
                 onChange={(tabId) => this.handleTabChange(tabId)}
@@ -52,8 +52,8 @@ class LayoutWithTabs extends Component {
                 <Tab>Tab16</Tab>
               </LayoutHeaderTabs>
             </LayoutHeader>
-            <LayoutDrawer title='Title'/>
-            <LayoutContent/>
+            <LayoutDrawer title='Title' />
+            <LayoutContent />
           </Layout>
         </div>
       </Layout>

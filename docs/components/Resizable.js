@@ -33,27 +33,28 @@ class Resizable extends React.Component {
     }
   }
 
-  onResize(evt, { size }) {
+  onResize = (evt, { size }) => {
     this.setState(size);
     this.props.onResize(evt, {
       size
     });
-  }
+  };
 
-  onResizeStop() {
+  onResizeStop = () => {
     $.removeClass(findDOMNode(this.refs.mask), 'show');
-  }
+  };
 
-  onResizeStart() {
+  onResizeStart = () => {
     $.addClass(findDOMNode(this.refs.mask), 'show');
-  }
+  };
 
   render() {
     const props = this.props;
     const state = this.state;
 
     const styles = {
-      width: state.width + 'px', height: state.height + 'px'
+      width: state.width,
+      height: state.height
     };
 
     return (
@@ -62,9 +63,9 @@ class Resizable extends React.Component {
         height={props.height}
         className='Resizable'
         minConstraints={[320, 320]}
-        onResizeStop={this.onResizeStop.bind(this)}
-        onResizeStart={this.onResizeStart.bind(this)}
-        onResize={this.onResize.bind(this)}
+        onResizeStop={this.onResizeStop}
+        onResizeStart={this.onResizeStart}
+        onResize={this.onResize}
       >
         <div style={styles}>
           {props.children}

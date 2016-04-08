@@ -24,6 +24,7 @@ const FooterDropDownSection = (props) => {
 
 FooterDropDownSection.propTypes = {
   className: PropTypes.string,
+  children: PropTypes.node,
   size: PropTypes.oneOf(['mini', 'mega']),
   title: PropTypes.node.isRequired
 };

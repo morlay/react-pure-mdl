@@ -7,31 +7,29 @@ import Layout, {
   LayoutContent
 } from '../../layout/Layout';
 
-const LayoutTransparentHeader = () => {
-  return (
-    <Layout style={{ backgroundColor: '#ddd' }}>
-      <LayoutHeader
-        transparent
-        title='Title'
-      >
-        <LayoutNavigation>
-          <a href=''>Link</a>
-          <a href=''>Link</a>
-          <a href=''>Link</a>
-          <a href=''>Link</a>
-        </LayoutNavigation>
-      </LayoutHeader>
-      <LayoutDrawer title='Title'>
-        <LayoutNavigation>
-          <a href=''>Link</a>
-          <a href=''>Link</a>
-          <a href=''>Link</a>
-          <a href=''>Link</a>
-        </LayoutNavigation>
-      </LayoutDrawer>
-      <LayoutContent />
-    </Layout>
-  );
-};
+const LayoutTransparentHeader = () => (
+  <Layout style={{ backgroundColor: '#ddd' }}>
+    <LayoutHeader
+      transparent
+      title='Title'
+    >
+      <LayoutNavigation>
+        <a href=''>Link</a>
+        <a href=''>Link</a>
+        <a href=''>Link</a>
+        <a href=''>Link</a>
+      </LayoutNavigation>
+    </LayoutHeader>
+    <LayoutDrawer title='Title'>
+      <LayoutNavigation>
+        <a href=''>Link</a>
+        <a href=''>Link</a>
+        <a href=''>Link</a>
+        <a href=''>Link</a>
+      </LayoutNavigation>
+    </LayoutDrawer>
+    <LayoutContent />
+  </Layout>
+);
 
 export default LayoutTransparentHeader;

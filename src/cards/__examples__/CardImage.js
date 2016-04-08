@@ -22,22 +22,20 @@ const cardActionStyles = {
   background: 'rgba(0,0,0,0.2)'
 };
 
-const CardImage = () => {
-  return (
-    <Shadow level={0}>
-      <Card
-        shadow={0}
-        style={cardStyles}
-      >
-        <CardTitle expand/>
-        <CardActions style={cardActionStyles}>
-          <span style={extraStyles}>
-            Image.jpg
-          </span>
-        </CardActions>
-      </Card>
-    </Shadow>
-  );
-};
+const CardImage = () => (
+  <Shadow level={0}>
+    <Card
+      shadow={0}
+      style={cardStyles}
+    >
+      <CardTitle expand />
+      <CardActions style={cardActionStyles}>
+        <span style={extraStyles}>
+          Image.jpg
+        </span>
+      </CardActions>
+    </Card>
+  </Shadow>
+);
 
 export default CardImage;

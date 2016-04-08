@@ -14,6 +14,7 @@ const shadows = [
 
 class Shadow extends React.Component {
   static propTypes = {
+    children: PropTypes.node,
     level: PropTypes.oneOf([0, 1, 2, 3, 4, 5])
   };
 

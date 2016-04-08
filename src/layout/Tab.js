@@ -1,14 +1,15 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 
 import * as TabsCssClasses from './constants/TabsCssClasses';
 
 import Ripple from '../effects/Ripple';
 
-class Tab extends React.Component {
+class Tab extends Component {
   static propTypes = {
     active: PropTypes.bool,
     className: PropTypes.string,
+    children: PropTypes.node,
     cssPrefix: PropTypes.string,
     onTabClick: PropTypes.func,
     style: PropTypes.object,
@@ -32,8 +33,10 @@ class Tab extends React.Component {
   }
 
   render() {
-    const { active, className, cssPrefix, ripple,
-      renderRippleContainer, style, ...otherProps } = this.props;
+    const {
+      active, className, cssPrefix, ripple,
+      renderRippleContainer, style, ...otherProps
+    } = this.props;
 
     const classes = classNames({
       [`${cssPrefix}__tab`]: true,
@@ -58,8 +61,9 @@ class Tab extends React.Component {
 Tab.PropType = (props, propName, componentName) => {
   const prop = props[propName];
   if (prop.type !== Tab) {
-    return new Error('`' + componentName + '` only accepts `Tab` as children.');
+    return new Error(`${componentName} only accepts \`Tab\` as children.`);
   }
+  return null;
 };
 
 export default Tab;

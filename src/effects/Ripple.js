@@ -48,20 +48,19 @@ class Ripple extends Component {
 
   setRippleStyles(start) {
     if (this.ripple_element !== null) {
-      let transformString;
       let scale;
-      let offset = 'translate(' + this.x + 'px, ' + this.y + 'px)';
+      let offset = `translate(${this.x}px, ${this.y}px)`;
 
       if (start) {
         scale = Constant.INITIAL_SCALE;
       } else {
         scale = Constant.FINAL_SCALE;
         if (this.props.center) {
-          offset = 'translate(' + this.boundWidth / 2 + 'px, ' + this.boundHeight / 2 + 'px)';
+          offset = `translate(${this.boundWidth / 2}px, ${this.boundHeight / 2}px)`;
         }
       }
 
-      transformString = 'translate(-50%, -50%) ' + offset + scale;
+      const transformString = `translate(-50%, -50%) ${offset} ${scale}`;
 
       this.ripple_element.style.webkitTransform = transformString;
       this.ripple_element.style.msTransform = transformString;
@@ -82,8 +81,8 @@ class Ripple extends Component {
       this.boundWidth = rect.width;
       this.rippleSize = Math.sqrt(rect.width * rect.width + rect.height * rect.height) * 2 + 2;
       Object.assign(this.ripple_element.style, {
-        width: this.rippleSize + 'px',
-        height: this.rippleSize + 'px'
+        width: this.rippleSize,
+        height: this.rippleSize
       });
     }
 

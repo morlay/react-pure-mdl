@@ -16,7 +16,8 @@ class ReactDoc extends React.Component {
   static propTypes = {
     reactDocJson: PropTypes.object.isRequired,
     onMenuItemClick: PropTypes.func,
-    grouper: PropTypes.func
+    grouper: PropTypes.func,
+    children: PropTypes.node
   };
 
   static defaultProps = {
@@ -37,7 +38,7 @@ class ReactDoc extends React.Component {
               href='https://github.com/morlay/react-pure-mdl'
               style={{ color: '#fff' }}
             >
-              <Icon name='link'/>
+              <Icon name='link' />
               Github
             </Button>
           </LayoutHeaderRow>

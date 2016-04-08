@@ -1,27 +1,24 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 import * as LayoutCssClasses from './constants/LayoutCssClasses';
 
-class LayoutContent extends Component {
-  static propTypes = {
-    className: PropTypes.string
-  };
+const LayoutContent = ({ children, className, ...otherProps }) => {
+  const classes = classNames(className, LayoutCssClasses.CONTENT);
 
-  render() {
-    const { children, className, ...otherProps } = this.props;
+  return (
+    <main
+      {...otherProps}
+      className={classes}
+    >
+      {children}
+    </main>
+  );
+};
 
-    const classes = classNames(className, LayoutCssClasses.CONTENT);
-
-    return (
-      <main
-        {...otherProps}
-        className={classes}
-      >
-        {children}
-      </main>
-    );
-  }
-}
+LayoutContent.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node
+};
 
 export default LayoutContent;

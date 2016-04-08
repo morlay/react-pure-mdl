@@ -27,6 +27,7 @@ const Footer = (props) => {
 };
 
 Footer.propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string,
   size: PropTypes.oneOf(['mini', 'mega'])
 };

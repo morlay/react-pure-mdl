@@ -19,7 +19,8 @@ const CardActions = (props) => {
 
 CardActions.propTypes = {
   border: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
+  children: PropTypes.node
 };
 
 export default CardActions;

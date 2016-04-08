@@ -36,15 +36,13 @@ class ReactDocMain extends React.Component {
             }
             return true;
           })
-          .map((componentItem, idx) => {
-            return (
-              <ReactDocSection
-                key={idx}
-                componentItem={componentItem}
-                previewConfig={props.previewConfig}
-              />
-            );
-          })
+          .map((componentItem, idx) => (
+            <ReactDocSection
+              key={idx}
+              componentItem={componentItem}
+              previewConfig={props.previewConfig}
+            />
+          ))
           .value()
         }
       </main>

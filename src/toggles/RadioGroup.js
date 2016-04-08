@@ -6,6 +6,7 @@ class RadioGroup extends Component {
     name: PropTypes.string,
     // return the selected value
     onChange: PropTypes.func,
+    children: PropTypes.node,
     defaultValue: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number

@@ -21,6 +21,7 @@ const LayoutHeaderRow = props => {
 
 LayoutHeaderRow.propTypes = {
   className: PropTypes.string,
+  children: PropTypes.node,
   title: PropTypes.node
 };
 

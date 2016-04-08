@@ -20,8 +20,9 @@ const Constants = {
 const MenuItemPropType = (props, propName, componentName) => {
   const prop = props[propName];
   if (prop.type !== MenuItem) {
-    return new Error('`' + componentName + '` only accepts `Tab` as children.');
+    return new Error(`${componentName} only accepts \`Tab\` as children.`);
   }
+  return null;
 };
 
 /**
@@ -82,15 +83,12 @@ class Menu extends React.Component {
     Object.assign($container.style, {
       width: menuSize.width,
       height: menuSize.height,
-      top: (
-        this.props.valign === 'top' ?
-        forSize.top - menuSize.height :
-        forSize.top + forSize.height
-      ) + 'px',
-      left: (
-        this.props.align === 'left' ? forSize.left :
-        forSize.left - menuSize.width + forSize.width
-      ) + 'px'
+      top: this.props.valign === 'top'
+        ? forSize.top - menuSize.height
+        : forSize.top + forSize.height,
+      left: this.props.align === 'left'
+        ? forSize.left
+        : forSize.left - menuSize.width + forSize.width
     });
 
     Object.assign($outline.style, {
@@ -108,7 +106,7 @@ class Menu extends React.Component {
         align === 'top' ? height : 0,
         align === 'left' ? 0 : width
       ]
-        .map((val) => val + 'px')
+        .map((val) => `${val}px`)
         .join(' ');
       Object.assign($element.style, {
         clip: `rect(${rectValue})`
@@ -129,12 +127,8 @@ class Menu extends React.Component {
       Constants.TRANSITION_DURATION_FRACTION;
 
     Object.keys(this.refs)
-      .filter((key) => {
-        return key.substring(0, 4) === 'item';
-      })
-      .map((key) => {
-        return this.refs[key];
-      })
+      .filter((key) => key.substring(0, 4) === 'item')
+      .map((key) => this.refs[key])
       .forEach((element) => {
         const $element = findDOMNode(element);
         let itemDelay = null;
@@ -146,7 +140,7 @@ class Menu extends React.Component {
         } else {
           itemDelay = ($element.offsetTop / menuSize.height * transitionDuration);
         }
-        $element.style.transitionDelay = itemDelay + 's';
+        $element.style.transitionDelay = `${itemDelay}s`;
       });
 
     this.applyClip($menu, menuSize.height, menuSize.width);
@@ -154,7 +148,7 @@ class Menu extends React.Component {
     this.setState({
       animating: true
     }, () => {
-      $menu.style.clip = 'rect(0 ' + menuSize.width + 'px ' + menuSize.height + 'px 0)';
+      $menu.style.clip = `rect(0 ${menuSize.width}px ${menuSize.height}px 0)`;
     });
 
     transition.end($menu, () => {
@@ -190,7 +184,7 @@ class Menu extends React.Component {
       target,
       valign,
       ...otherProps
-      } = this.props;
+    } = this.props;
 
     const containerClasses = classNames(MenuCssClasses.CONTAINER, {
       [MenuCssClasses.IS_UPGRADED]: true,
@@ -229,14 +223,10 @@ class Menu extends React.Component {
             className={menuClasses}
             {...otherProps}
           >
-            {
-              Children.map(children, (child, idx) => {
-                return cloneElement(child, {
-                  ref: 'item-' + idx,
-                  ripple
-                });
-              })
-            }
+            {Children.map(children, (child, idx) => cloneElement(child, {
+              ref: `item-${idx}`,
+              ripple
+            }))}
           </ul>
         </div>
       </div>

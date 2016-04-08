@@ -20,6 +20,7 @@ const FABButton = (props) => {
 
 FABButton.propTypes = {
   className: PropTypes.string,
+  children: PropTypes.node,
   mini: PropTypes.bool
 };
 

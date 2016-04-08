@@ -34,8 +34,10 @@ class Switch extends React.Component {
   };
 
   render() {
-    const { className, label, checked, focus, disabled,
-      ripple, renderRippleContainer, ...inputProps } = this.props;
+    const {
+      className, label, checked, focus, disabled,
+      ripple, renderRippleContainer, ...inputProps
+    } = this.props;
 
     const classes = classNames(className, SwitchCssClasses.ROOT, {
       [SwitchCssClasses.IS_UPGRADED]: true,
@@ -54,9 +56,9 @@ class Switch extends React.Component {
           type='checkbox'
         />
         {label && <span className={SwitchCssClasses.LABEL}>{label}</span>}
-        <span className={SwitchCssClasses.TRACK}/>
+        <span className={SwitchCssClasses.TRACK} />
         <span className={SwitchCssClasses.THUMB}>
-          <span className={SwitchCssClasses.FOCUS_HELPER}/>
+          <span className={SwitchCssClasses.FOCUS_HELPER} />
         </span>
         {ripple && renderRippleContainer()}
       </label>

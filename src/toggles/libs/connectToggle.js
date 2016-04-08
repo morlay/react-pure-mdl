@@ -28,7 +28,6 @@ export default function connectToggle(TargetComponent) {
 
     componentWillReceiveProps(nextProps) {
       if ('checked' in nextProps && nextProps.checked !== this.state.checked) {
-        console.log('componentWillReceiveProps', nextProps.checked)
         this.setState({
           checked: nextProps.checked
         });

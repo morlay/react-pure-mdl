@@ -11,6 +11,7 @@ class LayoutDrawer extends Component {
      * merge child
      */
     cloneChild: PropTypes.bool,
+    children: PropTypes.node,
     open: PropTypes.bool
   };
 

@@ -7,6 +7,7 @@ class TabBar extends React.Component {
     className: PropTypes.string,
     cssPrefix: PropTypes.string.isRequired,
     ripple: PropTypes.bool,
+    children: PropTypes.node,
     onChange: PropTypes.func
   };
 
@@ -21,8 +22,10 @@ class TabBar extends React.Component {
   }
 
   render() {
-    const { activeTab, className, ripple, cssPrefix,
-      children, ...otherProps } = this.props;
+    const {
+      activeTab, className, ripple, cssPrefix,
+      children, ...otherProps
+    } = this.props;
 
     const classes = classNames({
       [`${cssPrefix}__tab-bar`]: true
@@ -30,15 +33,13 @@ class TabBar extends React.Component {
 
     return (
       <div className={classes} {...otherProps}>
-        {React.Children.map(children, (child, tabId) => {
-          return React.cloneElement(child, {
-            cssPrefix,
-            tabId,
-            ripple,
-            active: tabId === activeTab,
-            onTabClick: e => this._handleClickTab(e)
-          });
-        })}
+        {React.Children.map(children, (child, tabId) => React.cloneElement(child, {
+          cssPrefix,
+          tabId,
+          ripple,
+          active: tabId === activeTab,
+          onTabClick: e => this._handleClickTab(e)
+        }))}
       </div>
     );
   }

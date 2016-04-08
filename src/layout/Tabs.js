@@ -10,42 +10,40 @@ import * as TabsCssClasses from './constants/TabsCssClasses';
 /**
  * @exampleFile ./__examples__/Tabs.js
  */
-class Tabs extends React.Component {
-  static propTypes = {
-    activeTab: PropTypes.number,
-    children: PropTypes.oneOfType([
-      Tab.PropType,
-      PropTypes.arrayOf(Tab.PropType)
-    ]),
-    ripple: PropTypes.bool,
-    className: PropTypes.string,
-    tabBarProps: PropTypes.object,
-    onChange: PropTypes.func
-  };
+const Tabs = ({
+  tabBarProps, ripple, activeTab,
+  className, onChange, children, ...otherProps
+}) => {
+  const classes = classNames(TabsCssClasses.ROOT, className, {
+    [TabsCssClasses.IS_UPGRADED]: true
+  });
 
-  render() {
-    const { tabBarProps, ripple, activeTab,
-      className, onChange, children, ...otherProps } = this.props;
+  return (
+    <div className={classes} {...otherProps}>
+      <TabBar
+        ripple={ripple}
+        cssPrefix={TabsCssClasses.ROOT}
+        activeTab={activeTab}
+        onChange={onChange}
+        {...tabBarProps}
+      >
+        {children}
+      </TabBar>
+    </div>
+  );
+};
 
-    const classes = classNames(TabsCssClasses.ROOT, className, {
-      [TabsCssClasses.IS_UPGRADED]: true
-    });
-
-    return (
-      <div className={classes} {...otherProps}>
-        <TabBar
-          ripple={ripple}
-          cssPrefix={TabsCssClasses.ROOT}
-          activeTab={activeTab}
-          onChange={onChange}
-          {...tabBarProps}
-        >
-          {children}
-        </TabBar>
-      </div>
-    );
-  }
-}
+Tabs.propTypes = {
+  activeTab: PropTypes.number,
+  children: PropTypes.oneOfType([
+    Tab.PropType,
+    PropTypes.arrayOf(Tab.PropType)
+  ]),
+  ripple: PropTypes.bool,
+  className: PropTypes.string,
+  tabBarProps: PropTypes.object,
+  onChange: PropTypes.func
+};
 
 export {
   TabBar,

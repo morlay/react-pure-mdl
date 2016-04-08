@@ -51,11 +51,11 @@ class Tooltip extends Component {
       $popup.style.left = 0;
       $popup.style.marginLeft = 0;
     } else {
-      $popup.style.left = left + 'px';
-      $popup.style.marginLeft = marginLeft + 'px';
+      $popup.style.left = left;
+      $popup.style.marginLeft = marginLeft;
     }
 
-    $popup.style.top = styles.top + styles.height + 10 + 'px';
+    $popup.style.top = styles.top + styles.height + 10;
 
     this.setState({
       active: true

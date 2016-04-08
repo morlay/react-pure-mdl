@@ -3,9 +3,7 @@ import classNames from 'classnames';
 
 import GridCssClasses from './constants/GridCssClasses';
 
-const Cell = (props) => {
-  const { align, className, children, col, phone, tablet, ...otherProps } = props;
-
+const Cell = ({ align, className, children, col, phone, tablet, ...otherProps }) => {
   const hasPhoneCell = typeof phone !== 'undefined';
   const hasTabletCell = typeof tablet !== 'undefined';
   const hasAlignCell = typeof align !== 'undefined';
@@ -39,7 +37,8 @@ Cell.propTypes = {
   col: PropTypes.number.isRequired,
   offset: PropTypes.number,
   phone: PropTypes.number,
-  tablet: PropTypes.number
+  tablet: PropTypes.number,
+  children: PropTypes.node
 };
 
 export default Cell;

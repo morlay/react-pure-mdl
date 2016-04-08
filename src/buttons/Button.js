@@ -15,7 +15,7 @@ class Button extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     href: PropTypes.string,
-    component: PropTypes.any,
+    children: PropTypes.node,
     accent: PropTypes.bool,
     colored: PropTypes.bool,
     primary: PropTypes.bool,
@@ -25,13 +25,15 @@ class Button extends React.Component {
   };
 
   static defaultProps = {
-    renderRippleContainer: () => <Ripple className={ButtonCssClasses.RIPPLE_CONTAINER}/>
+    renderRippleContainer: () => <Ripple className={ButtonCssClasses.RIPPLE_CONTAINER} />
   };
 
   render() {
-    const { accent, className, colored,
-      primary, raised, component, href,
-      children, ripple, renderRippleContainer, ...otherProps } = this.props;
+    const {
+      accent, className, colored,
+      primary, raised, href,
+      children, ripple, renderRippleContainer, ...otherProps
+    } = this.props;
 
     const buttonClasses = classNames(ButtonCssClasses.ROOT, {
       [ButtonCssClasses.RAISED]: raised,

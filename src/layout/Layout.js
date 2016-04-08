@@ -34,6 +34,7 @@ const Constants = {
 class Layout extends React.Component {
   static propTypes = {
     mode: PropTypes.oneOf(['standard', 'seamed', 'waterfall', 'scroll']),
+    children: PropTypes.node,
     drawerBtn: PropTypes.node,
     drawerOpen: PropTypes.bool,
     className: PropTypes.string,
@@ -46,7 +47,7 @@ class Layout extends React.Component {
     mode: 'standard',
     drawerBtn: (
       <span>
-        <Icon name='menu'/>
+        <Icon name='menu' />
       </span>
     )
   };
@@ -94,9 +95,10 @@ class Layout extends React.Component {
   }
 
   _hasDrawer(children) {
-    return [].concat(children).reduce((hasDrawer, child) => {
-      return hasDrawer || (isValidElement(child) && child.type === LayoutDrawer);
-    }, false);
+    return [].concat(children).reduce(
+      (hasDrawer, child) => hasDrawer || (isValidElement(child) && child.type === LayoutDrawer),
+      false
+    );
   }
 
   _screenSizeHandler() {

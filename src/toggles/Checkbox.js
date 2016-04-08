@@ -33,8 +33,10 @@ class Checkbox extends React.Component {
   };
 
   render() {
-    const { className, label, disabled, checked, focus,
-      ripple, renderRippleContainer, ...inputProps } = this.props;
+    const {
+      className, label, disabled, checked, focus,
+      ripple, renderRippleContainer, ...inputProps
+    } = this.props;
 
     const classes = classNames(className, CheckboxCssClasses.ROOT, {
       [CheckboxCssClasses.IS_UPGRADED]: true,
@@ -53,9 +55,9 @@ class Checkbox extends React.Component {
           type='checkbox'
         />
         {label && <span className={CheckboxCssClasses.LABEL}>{label}</span>}
-        <span className={CheckboxCssClasses.FOCUS_HELPER}/>
+        <span className={CheckboxCssClasses.FOCUS_HELPER} />
         <span className={CheckboxCssClasses.BOX_OUTLINE}>
-          <span className={CheckboxCssClasses.TICK_OUTLINE}/>
+          <span className={CheckboxCssClasses.TICK_OUTLINE} />
         </span>
         {ripple && renderRippleContainer()}
       </label>

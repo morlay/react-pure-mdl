@@ -21,7 +21,7 @@ class Spinner extends React.Component {
   createLayer(idx) {
     const layerClasses = classNames(
       SpinnerCssClasses.MDL_SPINNER_LAYER,
-      SpinnerCssClasses.MDL_SPINNER_LAYER + '-' + idx
+      `${SpinnerCssClasses.MDL_SPINNER_LAYER}-${idx}`
     );
     const leftCircleClasses = classNames(
       SpinnerCssClasses.MDL_SPINNER_CIRCLE_CLIPPER,
@@ -38,13 +38,13 @@ class Spinner extends React.Component {
         className={layerClasses}
       >
         <div className={leftCircleClasses}>
-          <div className={SpinnerCssClasses.MDL_SPINNER_CIRCLE}/>
+          <div className={SpinnerCssClasses.MDL_SPINNER_CIRCLE} />
         </div>
         <div className={SpinnerCssClasses.MDL_SPINNER_GAP_PATCH}>
-          <div className={SpinnerCssClasses.MDL_SPINNER_CIRCLE}/>
+          <div className={SpinnerCssClasses.MDL_SPINNER_CIRCLE} />
         </div>
         <div className={rightCircleClasses}>
-          <div className={SpinnerCssClasses.MDL_SPINNER_CIRCLE}/>
+          <div className={SpinnerCssClasses.MDL_SPINNER_CIRCLE} />
         </div>
       </div>
     );

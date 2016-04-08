@@ -24,7 +24,7 @@ describe('Badge', () => {
 
   describe('should not render badge', () => {
     it('when no children', () => {
-      const wrapper = shallow(<Badge text={4}/>);
+      const wrapper = shallow(<Badge text={4} />);
       expect(wrapper.node).to.be.a('null');
     });
   });

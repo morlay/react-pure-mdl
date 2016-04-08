@@ -32,9 +32,7 @@ class ReactDocSection extends React.Component {
         case 'enum':
         case 'union':
           return _(typeObject.value)
-            .map((obj) => {
-              return this.processType(obj);
-            })
+            .map((obj) => this.processType(obj))
             .join(' | ');
         case 'instanceOf':
           return `${typeObject.name} ${typeObject.value}`;
@@ -43,6 +41,7 @@ class ReactDocSection extends React.Component {
           return typeObject.name ? `${typeObject.name}` : `${typeObject.value}`;
       }
     }
+    return null;
   }
 
   renderProps(componentProps) {
@@ -78,16 +77,15 @@ class ReactDocSection extends React.Component {
     );
   }
 
+
   renderExamples(examples = []) {
-    return _.map(examples, (exampleItem, idx) => {
-      return (
-        <ReactPlayground
-          key={idx}
-          previewConfig={this.props.previewConfig}
-          codeText={exampleItem.contents}
-        />
-      );
-    });
+    return _.map(examples, (exampleItem, idx) => (
+      <ReactPlayground
+        key={idx}
+        previewConfig={this.props.previewConfig}
+        codeText={exampleItem.contents}
+      />
+    ));
   }
 
   render() {

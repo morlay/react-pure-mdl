@@ -16,14 +16,6 @@
       2,
       "prefer-single"
     ],
-    "react/prop-types": [
-      2,
-      {
-        "ignore": [
-          "children"
-        ]
-      }
-    ],
     "react/no-did-mount-set-state": 0,
     "react/no-multi-comp": 0
   }

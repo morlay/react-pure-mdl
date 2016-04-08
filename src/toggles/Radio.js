@@ -38,8 +38,10 @@ class Radio extends Component {
   };
 
   render() {
-    const { label, checked, disabled, focus, className,
-      ripple, renderRippleContainer, ...inputProps } = this.props;
+    const {
+      label, checked, disabled, focus, className,
+      ripple, renderRippleContainer, ...inputProps
+    } = this.props;
 
     const classes = classNames(className, RadioCssClasses.ROOT, {
       [RadioCssClasses.IS_UPGRADED]: true,
@@ -58,8 +60,8 @@ class Radio extends Component {
           className={RadioCssClasses.RADIO_BTN}
         />
         {label && <span className={RadioCssClasses.LABEL}>{label}</span>}
-        <span className={RadioCssClasses.RADIO_OUTER_CIRCLE}/>
-        <span className={RadioCssClasses.RADIO_INNER_CIRCLE}/>
+        <span className={RadioCssClasses.RADIO_OUTER_CIRCLE} />
+        <span className={RadioCssClasses.RADIO_INNER_CIRCLE} />
         {ripple && renderRippleContainer()}
       </label>
     );

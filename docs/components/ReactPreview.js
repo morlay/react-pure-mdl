@@ -56,11 +56,11 @@ class ReactPreview extends React.Component {
     }
   }
 
-  handleResize(evt, { size }) {
+  handleResize = (evt, { size }) => {
     this.setState(size, () => {
       this.props.onSizeChange(size);
     });
-  }
+  };
 
   refreshIframe(props) {
     const iframe = findDOMNode(this.refs.iframe);
@@ -122,7 +122,8 @@ class ReactPreview extends React.Component {
     const state = this.state;
 
     const styles = {
-      width: state.width + 'px', height: state.height + 'px'
+      width: state.width,
+      height: state.height
     };
 
     return (
@@ -130,7 +131,7 @@ class ReactPreview extends React.Component {
         <Resizable
           width={state.width}
           height={state.height}
-          onResize={this.handleResize.bind(this)}
+          onResize={this.handleResize}
         >
           <iframe
             ref='iframe'

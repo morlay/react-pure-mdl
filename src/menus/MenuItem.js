@@ -8,6 +8,7 @@ import Ripple from '../effects/Ripple';
 class MenuItem extends Component {
   static propTypes = {
     className: PropTypes.string,
+    children: PropTypes.node,
     ripple: PropTypes.bool,
     renderRippleContainer: PropTypes.func
   };

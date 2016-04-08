@@ -53,9 +53,9 @@ class ReactPlayground extends React.Component {
     clearTimeout(this.timeoutID);
   }
 
-  setTimeout() {
+  setTimeout(...args) {
     clearTimeout(this.timeoutID);
-    this.timeoutID = setTimeout.apply(null, arguments);
+    this.timeoutID = setTimeout(...args);
   }
 
   executeCode() {
@@ -100,17 +100,17 @@ class ReactPlayground extends React.Component {
     this.setState(size);
   }
 
-  resizeWidth(evt) {
+  resizeWidth = (evt) => {
     this.setState({
       width: parseInt(evt.target.value, 10)
     });
-  }
+  };
 
-  resizeHeight(evt) {
+  resizeHeight = (evt) => {
     this.setState({
       height: parseInt(evt.target.value, 10)
     });
-  }
+  };
 
   render() {
     return (
@@ -135,7 +135,7 @@ class ReactPlayground extends React.Component {
               <Button onClick={(e) => this._onCodeToggle(e)}>
                 {this.state.showCode ? 'hide code' : 'show code'}
               </Button>
-              <LayoutSpacer/>
+              <LayoutSpacer />
               <span>
                 <Textfield
                   floatingLabel
@@ -143,7 +143,7 @@ class ReactPlayground extends React.Component {
                   name='width'
                   type='number'
                   value={this.state.width}
-                  onChange={this.resizeWidth.bind(this)}
+                  onChange={this.resizeWidth}
                 />
                 &nbsp;
                 <Textfield
@@ -152,7 +152,7 @@ class ReactPlayground extends React.Component {
                   name='width'
                   type='number'
                   value={this.state.height}
-                  onChange={this.resizeHeight.bind(this)}
+                  onChange={this.resizeHeight}
                 />
               </span>
             </CardActions>

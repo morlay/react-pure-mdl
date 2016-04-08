@@ -1,12 +1,11 @@
-export default (conf) => {
-  return {
-    files: [
-      {
-        src: [
-          `${conf.docs}/index.html`
-        ],
-        output: conf.build
-      }
-    ]
-  };
-};
+export default (conf) => ({
+  files: [
+    {
+      src: [
+        `${conf.docs}/index.html`
+      ],
+      output: conf.build
+    }
+  ]
+});
+

@@ -25,6 +25,7 @@ const Grid = (props) => {
 };
 
 Grid.propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string,
   noSpacing: PropTypes.bool
 };

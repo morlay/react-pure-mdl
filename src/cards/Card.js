@@ -30,7 +30,8 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  children: PropTypes.node
 };
 
 export { CardTitle, CardActions };

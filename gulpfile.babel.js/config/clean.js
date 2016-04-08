@@ -1,5 +1,3 @@
-export default (conf) => {
-  return {
-    src: conf.build
-  };
-};
+export default (conf) => ({
+  src: conf.build
+});

@@ -10,9 +10,7 @@ const FooterLinkList = (props) => {
 
   return (
     <ul className={classes} {...otherProps}>
-      {React.Children.map(children, child => {
-        return <li>{child}</li>;
-      })}
+      {React.Children.map(children, child => (<li>{child}</li>))}
     </ul>
   );
 };

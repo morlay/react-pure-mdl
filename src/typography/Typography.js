@@ -44,6 +44,7 @@ class Typography extends React.Component {
      * `.mdl-typography--${type}-color-contrast`
      */
     colorContrast: PropTypes.bool,
+    children: PropTypes.node,
 
     fontWeight: PropTypes.oneOf(['thin', 'light', 'regular', 'medium', 'bold', 'black']),
     textAlign: PropTypes.oneOf(['right', 'left', 'center', 'justify']),
@@ -62,11 +63,11 @@ class Typography extends React.Component {
       textTransform,
       nowrap,
       children
-      } = this.props;
+    } = this.props;
 
     const newLevel = ['display', 'body'].indexOf(type) > -1 ? (level || 1) : null;
 
-    let typeComposedClass = `mdl-typography--${type}${newLevel ? ('-' + newLevel) : ''}`;
+    let typeComposedClass = `mdl-typography--${type}${newLevel ? (`-${newLevel}`) : ''}`;
 
     if (forcePreferredFont) {
       typeComposedClass += '-force-preferred-font';
@@ -82,7 +83,7 @@ class Typography extends React.Component {
       [`mdl-typography--font-${fontWeight}`]: fontWeight,
       [`mdl-typography--text-${textAlign}`]: textAlign,
       [`mdl-typography--text-${textTransform}`]: textTransform,
-      [`mdl-typography--text-nowrap`]: nowrap
+      ['mdl-typography--text-nowrap']: nowrap
     });
 
     if (isValidElement(children)) {
