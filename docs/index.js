@@ -5,7 +5,7 @@ import reactDocJson from './__generated/react-doc.json';
 import React, { cloneElement } from 'react';
 import ReactDOM from 'react-dom';
 
-import createHistory from 'history/lib/createHashHistory';
+import { hashHistory } from 'react-router';
 
 import ReactDoc from './components/ReactDoc';
 import ReactDocMain from './components/ReactDocMain';
@@ -35,17 +35,17 @@ class Root extends React.Component {
   };
 
   static contextTypes = {
-    history: React.PropTypes.object
+    router: React.PropTypes.object
   };
 
   _onMenuItemClick(groupName, componentName) {
-    const history = this.context.history;
+    const router = this.context.router;
     if (componentName) {
-      history.pushState(null, `/${groupName}/${componentName}`);
+      router.push(`/${groupName}/${componentName}`);
     } else if (groupName) {
-      history.pushState(null, `/${groupName}`);
+      router.push(`/${groupName}`);
     } else {
-      history.pushState(null, `/`);
+      router.push(`/`);
     }
   }
 
@@ -65,12 +65,12 @@ class Root extends React.Component {
 }
 
 ReactDOM.render(
-  (<Router history={createHistory()}>
+  (<Router history={hashHistory}>
     <Route
       path='/'
       component={Root}
     >
-      <IndexRoute component={ReactDocMain}/>
+      <IndexRoute component={ReactDocMain} />
       <Route
         path=':groupName'
         component={ReactDocMain}
