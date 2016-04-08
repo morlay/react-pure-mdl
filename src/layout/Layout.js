@@ -5,7 +5,7 @@ import { findDOMNode } from 'react-dom';
 import global from 'global';
 import classNames from 'classnames';
 
-import LayoutContent from './LayoutContent';
+import { RefableLayoutContent as LayoutContent } from './LayoutContent';
 import LayoutTitle from './LayoutTitle';
 import LayoutDrawer from './LayoutDrawer';
 import LayoutHeader from './LayoutHeader';

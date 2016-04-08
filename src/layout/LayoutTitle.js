@@ -1,8 +1,8 @@
-import { createElement, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import * as LayoutCssClasses from './constants/LayoutCssClasses';
 
 const LayoutTitle = ({ component, children, ...otherProps }) =>
-  createElement(component || 'h1', {
+  React.createElement(component || 'h1', {
     ...otherProps,
     className: LayoutCssClasses.TITLE
   }, children);
